@@ -1,6 +1,6 @@
 public class Board{
     private int [][] board;
-    public board(int n){
+    public Board(int n){
 	board = new int[n][n];
     }
 
@@ -9,9 +9,9 @@ public class Board{
     }
 
     public void printBoard(){
-	String s = ""
+	String s = "";
 	for(int i = 0; i < board.length; i++){
-	    s += "\n" 
+	    s += "\n"; 
 	    for(int k = 0; k < board[i].length; k ++){
 		s += board[i][k];
 	    }
@@ -19,11 +19,41 @@ public class Board{
 	System.out.println(s);
     }
 
+    public void addQueen(int n, int k){
+	board[n][k] = 1;
+	for(int i = 1; i < board[n].length - k ; i ++){
+	    board[n][k + i] --;
+	}
+	for(int i = 1; k - i >= 0 ; i ++){
+	    board[n][k - i] --;
+	} 
+
+	for(int i = 0; i + n < board.length - 1 && k + i < board.length -1; i ++){
+	    board[n + i + 1][k + i + 1] -- ;
+	}
+	for(int i = 1;  n - i >= 0 && k + i < board.length; i ++){
+	    board[n - i ][k + i] -- ;
+	}
+
+	for(int i = 0; n - i > 0 && k - i > 0 ; i ++){
+	  board[n - i - 1][k - i -1] -- ;
+		}
+	for(int i = 1;  i + n < board.length && k - i >= 0; i ++){
+	  board[n + i ][k - i] -- ;
+	}
+	
+    }
+	    
+	    
+	
+	
+
 
 
     public static void main(String[]args){
 	Board f = new Board(6);
 	System.out.println(f.name());
+	f.addQueen(5, 0);
 	f.printBoard();
     }
        
