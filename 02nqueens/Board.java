@@ -118,18 +118,6 @@ public class Board{
     }
 
    
-	
-
-
-
-    public static void main(String[]args){
-	Board f = new Board(5);
-	//System.out.println(f.name());
-	//f.addQueen(2, 3);
-	//f.removeQueen(2, 3);
-	//f.printBoard();
-	System.out.println(f.solve());
-    }
        
 }
 

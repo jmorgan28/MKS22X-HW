@@ -119,19 +119,7 @@ public class QueenBoard{
 	}
 	return ans;
     }
-    
-    public static void main(String[]args){
-	QueenBoard b = new QueenBoard(4);
-	// System.out.println(b);
-	//b.addQueen(3,0);
-	//b.addQueen(0,1);
-        //System.out.println(b);
-	//b.removeQueen(3,0);
-        //System.out.println(b);
-	//b.printSolution();
-	System.out.println(b.solve());
-	System.out.println(b);
-    }
+   
     
     
 }
