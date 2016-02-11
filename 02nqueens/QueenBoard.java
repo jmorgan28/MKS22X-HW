@@ -24,30 +24,7 @@ public class QueenBoard{
 	return solveH(0);
     }
 
-    /**
-     *Helper method fr solve. 
-     */
-    /*private boolean solveH(int col){
-	if(col == board.length){
-	    for(int i = 0; i <board.length; i++){
-		if(board[i][col] == 1){
-		    return true;  
-		}
-		if(i == board.length - 1){
-		    return false;
-		}
-	    }
-	}
-	    
-	else{
-	    for(int r = 0; r < board.length; r ++){
-	    addQueen(r, col);
-	}
-	    return solveH(col + 1);
-	    
-    }
-	return false;
-	}*/
+   
 
     public void clear(){
 	for(int r = 0; r < board.length; r++){
@@ -60,19 +37,7 @@ public class QueenBoard{
     private boolean solveH(int col){
 	if(col >= board.length){
 	    return true;}
-	/*if(col < board.length -1){
-	    int i = 0;
-	    for(int z = 0; z < board.length; z ++){
-		if(board [z][col + 1] < 0){
-		    i ++;
-		}
-	    }
-	    if(i == board.length){
-		// do something to get rid of input
-		clear();
-		return false;
-	    }
-	    }*/
+        
 	else{
 	    for(int z = 0; z < board.length; z ++){
 		if(addQueen(z,col)){
@@ -156,7 +121,7 @@ public class QueenBoard{
     }
     
     public static void main(String[]args){
-	QueenBoard b = new QueenBoard(5);
+	QueenBoard b = new QueenBoard(4);
 	// System.out.println(b);
 	//b.addQueen(3,0);
 	//b.addQueen(0,1);
@@ -165,7 +130,7 @@ public class QueenBoard{
         //System.out.println(b);
 	//b.printSolution();
 	System.out.println(b.solve());
-	b.printSolution();
+	System.out.println(b);
     }
     
     

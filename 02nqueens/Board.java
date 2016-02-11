@@ -19,6 +19,65 @@ public class Board{
 	System.out.println(s);
     }
 
+     public boolean solve()
+    {
+	return solveH(0);
+    }
+
+
+        public void printSolution(){
+	String ans = "";
+	for(int r = 0; r < board.length; r++){
+	    for(int c = 0; c < board[0].length; c++){
+		if(board[r][c] != 1){
+		ans+= "_\t";
+	    }
+	    else{ ans += "Q\t";}
+	    }
+	    ans+="\n";
+	}
+	System.out.println( ans);
+    }
+
+
+    public String  toString(){
+	String ans = "";
+	for(int r = 0; r < board.length; r++){
+	    for(int c = 0; c < board[0].length; c++){
+		ans+= board[r][c]+"\t";
+	    }
+	    ans+="\n";
+	}
+	return ans;
+    }
+
+    public void clear(){
+	for(int r = 0; r < board.length; r++){
+	    for(int c = 0; c < board[0].length; c++){
+		board[r][c] = 0;
+	    }
+	}
+    }
+    
+    private boolean solveH(int col){
+	if(col >= board.length){
+	    return true;}
+        
+	else{
+	    for(int z = 0; z < board.length; z ++){
+		if(addQueen(z,col)){
+		    if(solveH(col + 1) == true){
+			return true;
+		    }
+		    removeQueen(z,col);
+		}
+	    }
+	}
+	return false;
+    }
+		
+
+    
     public boolean addQueen(int n, int k){
 	if(board[n][k] != 0){
 	    return false;
@@ -27,9 +86,7 @@ public class Board{
 	for(int i = 1; i < board[n].length - k ; i ++){
 	    board[n][k + i] --;
 	}
-	//for(int i = 1; k - i >= 0 ; i ++){
-	//  board[n][k - i] --;
-	//} 
+	
 
 	for(int i = 0; i + n < board.length - 1 && k + i < board.length -1; i ++){
 	    board[n + i + 1][k + i + 1] -- ;
@@ -38,12 +95,6 @@ public class Board{
 	    board[n - i ][k + i] -- ;
 	}
 
-	/*for(int i = 0; n - i > 0 && k - i > 0 ; i ++){
-	  board[n - i - 1][k - i -1] -- ;
-		}
-	for(int i = 1;  i + n < board.length && k - i >= 0; i ++){
-	  board[n + i ][k - i] -- ;
-	  }*/
 	return true;
     }
 
@@ -55,9 +106,6 @@ public class Board{
 	for(int i = 1; i < board[n].length - k ; i ++){
 	    board[n][k + i] ++;
 	}
-	//for(int i = 1; k - i >= 0 ; i ++){
-	//  board[n][k - i] ++;
-	//	} 
 
 	for(int i = 0; i + n < board.length - 1 && k + i < board.length -1; i ++){
 	    board[n + i + 1][k + i + 1] ++ ;
@@ -66,92 +114,22 @@ public class Board{
 	    board[n - i ][k + i] ++ ;
 	}
 
-	/*for(int i = 0; n - i > 0 && k - i > 0 ; i ++){
-	  board[n - i - 1][k - i -1] ++ ;
-		}
-	for(int i = 1;  i + n < board.length && k - i >= 0; i ++){
-	  board[n + i ][k - i] ++ ;
-	  }*/
 	return true;
     }
 
-    /*public boolean helper(int col){
-	int k = 0;
-        for(int i = 0; i < board.length; i ++;){
-	    for(int f = 0; f < board.length; f++;){
-		    if(board[i][f] == 1){
-			k ++;
-		    }
-		}
-	}
-	if(k == board.length){
-	    return true;
-	}
-	if(col > board.length){
-	    return false;
-	}
-	else {
-	   
-			}
-
-	    
-		  
-       
- 
-    }
-
-    public boolean solve(){
-	return helper(0);
-    }
-    */
-	    
-	
+   
 	
 
 
 
     public static void main(String[]args){
-	Board f = new Board(6);
-	System.out.println(f.name());
-	f.addQueen(2, 3);
+	Board f = new Board(5);
+	//System.out.println(f.name());
+	//f.addQueen(2, 3);
 	//f.removeQueen(2, 3);
-	f.printBoard();
+	//f.printBoard();
+	System.out.println(f.solve());
     }
        
 }
-/*
-private boolean solveH(int col){
-	if(col == board.length){
-	    for(int i = 0; i <board.length; i++){
-		if(board[i][col] == 1){
-		    return true;
-		}
-	    }
-	    return false;
-	}
- 	if(col != board.length){
-	    int f = 0;
-	        for(int i = 0; i <board.length; i++){
-		    if(board[i][col] < 0){
-			    f ++;
-			}
-		    }
-		if(f == board.length){
-		    for(int r = 0; r < board.length; r++){
-			for(int c = 0; c < board[0].length; c++){
-			    removeQueen(r,c);
-			}
-		    }
-		    return false;
-		}
-	}
-	
-	else{
-	    for(int w = 0; w < board.length; w ++){
-	    addQueen(w,col);
-	}
-	    return solveH(col) || solveH(col + 1);
-	}
-	return false;
-    }
-*/
+
