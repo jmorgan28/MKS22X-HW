@@ -165,6 +165,7 @@ public class QueenBoard{
         //System.out.println(b);
 	//b.printSolution();
 	System.out.println(b.solve());
+	b.printSolution();
     }
     
     
