@@ -27,40 +27,66 @@ public class QueenBoard{
     /**
      *Helper method fr solve. 
      */
-    private boolean solveH(int col){
+    /*private boolean solveH(int col){
 	if(col == board.length){
 	    for(int i = 0; i <board.length; i++){
 		if(board[i][col] == 1){
-		    return true;
+		    return true;  
 		}
-	    }
-	    return false;
-	}
- 	if(col != board.length){
-	    int f = 0;
-	        for(int i = 0; i <board.length; i++){
-		    if(board[i][col] < 0){
-			    f ++;
-			}
-		    }
-		if(f == board.length){
-		    for(int r = 0; r < board.length; r++){
-			for(int c = 0; c < board[0].length; c++){
-			    removeQueen(r,c);
-			}
-		    }
+		if(i == board.length - 1){
 		    return false;
 		}
+	    }
 	}
-	
+	    
 	else{
-	    for(int w = 0; w < board.length; w ++){
-	    addQueen(w,col);
+	    for(int r = 0; r < board.length; r ++){
+	    addQueen(r, col);
 	}
-	    return solveH(col) || solveH(col + 1);
+	    return solveH(col + 1);
+	    
+    }
+	return false;
+	}*/
+
+    public void clear(){
+	for(int r = 0; r < board.length; r++){
+	    for(int c = 0; c < board[0].length; c++){
+		board[r][c] = 0;
+	    }
+	}
+    }
+    
+    private boolean solveH(int col){
+	if(col >= board.length){
+	    return true;}
+	/*if(col < board.length -1){
+	    int i = 0;
+	    for(int z = 0; z < board.length; z ++){
+		if(board [z][col + 1] < 0){
+		    i ++;
+		}
+	    }
+	    if(i == board.length){
+		// do something to get rid of input
+		clear();
+		return false;
+	    }
+	    }*/
+	else{
+	    for(int z = 0; z < board.length; z ++){
+		if(addQueen(z,col)){
+		    if(solveH(col + 1) == true){
+			return true;
+		    }
+		    removeQueen(z,col);
+		}
+	    }
 	}
 	return false;
     }
+			      
+    
 
     public void printSolution(){
 	String ans = "";
