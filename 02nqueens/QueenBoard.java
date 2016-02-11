@@ -156,7 +156,7 @@ public class QueenBoard{
     }
     
     public static void main(String[]args){
-	QueenBoard b = new QueenBoard(4);
+	QueenBoard b = new QueenBoard(5);
 	// System.out.println(b);
 	//b.addQueen(3,0);
 	//b.addQueen(0,1);
