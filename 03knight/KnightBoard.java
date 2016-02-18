@@ -37,6 +37,112 @@ public class KnightBoard{
 
     }
 
+    public boolean move(int dir, int row, int col, int num){
+	if(dir == 0){
+	    if(board[row + 2][col -1] == 0){
+		board[row + 2][col -1] = num;
+		return true;
+	    }
+	}
+	if(dir == 1){
+	    if(board[row + 2][col +1] == 0){
+		board[row + 2][col +1] = num;
+		return true;
+	    }
+	}
+	if(dir == 2){
+	    if(board[row - 1][col + 2] == 0){
+		board[row -1][col + 2] = num;
+		return true;
+	    }
+	}
+	if(dir == 3){
+	    if(board[row + 1][col + 2] == 0){
+		board[row + 1][col + 2] = num;
+		return true;
+	    }
+	}
+	if(dir == 4){
+	    if(board[row -2][col +1] == 0){
+		board[row -2][col +1] = num;
+		return true;
+	    }
+	}
+	if(dir == 5){
+	    if(board[row - 2][col -1] == 0){
+		board[row - 2][col -1] = num;
+		return true;
+	    }
+	}
+	if(dir == 6){
+	    if(board[row -1][col - 2] == 0){
+		board[row -1][col - 2] = num;
+		return true;
+	    }
+	}
+	if(dir == 7){
+	    if(board[row + 1][col - 2] == 0){
+		board[row + 1][col - 2] = num;
+		return true;
+	    }
+	}
+	return false;
+    }
+
+
+
+    public boolean remove(int dir, int row, int col, int num){
+	if(dir == 0){
+	    if(board[row + 2][col -1] == 0){
+		board[row + 2][col -1] = 0;
+		return true;
+	    }
+	}
+	if(dir == 1){
+	    if(board[row + 2][col +1] == 0){
+		board[row + 2][col +1] = 0;
+		return true;
+	    }
+	}
+	if(dir == 2){
+	    if(board[row - 1][col + 2] == 0){
+		board[row -1][col + 2] = 0;
+		return true;
+	    }
+	}
+	if(dir == 3){
+	    if(board[row + 1][col + 2] == 0){
+		board[row + 1][col + 2] = 0;
+		return true;
+	    }
+	}
+	if(dir == 4){
+	    if(board[row -2][col +1] == 0){
+		board[row -2][col +1] = 0;
+		return true;
+	    }
+	}
+	if(dir == 5){
+	    if(board[row - 2][col -1] == 0){
+		board[row - 2][col -1] = 0;
+		return true;
+	    }
+	}
+	if(dir == 6){
+	    if(board[row -1][col - 2] == 0){
+		board[row -1][col - 2] = 0;
+		return true;
+	    }
+	}
+	if(dir == 7){
+	    if(board[row + 1][col - 2] == 0){
+		board[row + 1][col - 2] = 0;
+		return true;
+	    }
+	}
+	return false;
+    }
+
 
     public static void main(String[]args){
 	KnightBoard k = new KnightBoard(6);
