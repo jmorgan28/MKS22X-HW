@@ -43,7 +43,7 @@ public class KnightBoard{
     }
 
     public boolean solveH(int row, int col, int num){
-	if(num > (board.length - 4) * (board[0].length - 4)){
+	if(num > (board.length - 4) * (board[0].length - 4) + 1){
 	    return true;
 	}
 	else{
@@ -51,60 +51,101 @@ public class KnightBoard{
 		if (solveH(row + 2, col -1, num ++) == true){
 		    return true;
 		}
+		else{
 		remove(0,row,col,num);
 		    }
+	    }
 	     if(move(1,row,col, num)){
 		if (solveH(row + 2, col +1, num ++) == true){
 		    return true;
 		}
+		else{
 		remove(1,row,col,num);
 		    }
+	     }
 	     if(move(2,row,col, num)){
 		if (solveH(row - 1, col +2, num ++) == true){
 		    return true;
 		}
+		else{
 		remove(2,row,col,num);
 		    }
+	     }
 	     if(move(3,row,col, num)){
 		if (solveH(row + 1, col + 2, num ++) == true){
 		    return true;
 		}
+		else{
 		remove(3,row,col,num);
 		    }
+	     }
 	      if(move(4,row,col, num)){
 		if (solveH(row - 2, col + 1, num ++) == true){
 		    return true;
 		}
+		else{
 		remove(4,row,col,num);
 		    }
+	      }
 	      if(move(5,row,col, num)){
 		if (solveH(row - 2, col -1, num ++) == true){
 		    return true;
 		}
+		else{
 		remove(5,row,col,num);
 		    }
+	      }
 	      if(move(6,row,col, num)){
 		if (solveH(row -1, col -2, num ++) == true){
 		    return true;
 		}
+		else{
 		remove(6,row,col,num);
 		    }
+	      }
 	      if(move(7,row,col, num)){
 		if (solveH(row + 1, col -2, num ++) == true){
 		    return true;
 		}
+		else{ 
 		remove(7,row,col,num);
 		    }
+	      }
 	      
 	}
 	return false;
     }
 
     public boolean solve(){
-	return solveH(2,2,1); 
+	for(int i = 2; i < board.length -2 ; i ++){
+	    for(int k = 2; k < board[i].length-2; k++){
+		if(solveH(i,k,1) == true){
+		    return true;
+		}
+	    }
+	}
+	return false;
     }
 
     public void printSolution(){
+	for(int i = 2; i < board.length -2 ; i ++){
+	    for(int k = 2; k < board[i].length-2; k++){
+		if((board.length - 4) * (board[0].length - 4) < 10){
+		    System.out.print(board[i][k] + " ");
+		}
+		else{
+		    if(board[i][k] < 10){
+			System.out.print("_" + board[i][k]+ " ");
+		    }
+		    else{System.out.print(board[i][k]+ " ");}
+		}
+	    }
+	    System.out.println();
+	}
+    }
+
+    
+    public void print(){
 	for(int i = 0; i < board.length; i++){
 	    for(int k = 0; k < board[i].length; k ++){
 		System.out.print(board[i][k]);
@@ -234,7 +275,7 @@ public class KnightBoard{
     
 
     public static void main(String[]args){
-	KnightBoard k = new KnightBoard(7,7);
+	KnightBoard k = new KnightBoard(6,6);
 	//System.out.println(k.move(7,4,4,1));
 	k.printSolution();
 	System.out.println(k.solve());
