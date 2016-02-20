@@ -1,6 +1,6 @@
-public class KnightBoard{
+public class Check{
     private int[][] board;
-    public KnightBoard(int n){
+    public Check(int n){
 	board = new int[n + 4][n +4];
 	for(int i = 0; i < board.length; i++){
 	    for(int k = 0; k < 2; k ++){
@@ -18,7 +18,7 @@ public class KnightBoard{
 	}
     }
 
-    public KnightBoard(int n, int w){
+    public Check(int n, int w){
 	board = new int[n +4][w + 4];
 	for(int i = 0; i < board.length; i++){
 	    for(int k = 0; k < 2; k ++){
@@ -48,82 +48,82 @@ public class KnightBoard{
 	}
 	else{
 	    if(move(0,row,col, num)){
-		if (solveH(row + 2, col --, num ++) == true){
+		if (solveH(row + 2, col -1, num ++) == true){
 		    return true;
 		}
-		//else{
+		else{
 		remove(0,row,col);
-		//  }
+		    }
 	    }
 	     if(move(1,row,col, num)){
-		if (solveH(row + 2, col ++, num ++) == true){
+		if (solveH(row + 2, col +1, num ++) == true){
 		    return true;
 		}
-		//else{
+		else{
 		remove(1,row,col);
-		//  }
+		    }
 	     }
 	     if(move(2,row,col, num)){
-		if (solveH(row --, col +2, num ++) == true){
+		if (solveH(row - 1, col +2, num ++) == true){
 		    return true;
 		}
-		//else{
+		else{
 		remove(2,row,col);
-		//    }
+		    }
 	     }
 	     if(move(3,row,col, num)){
-		if (solveH(row ++, col + 2, num ++) == true){
+		if (solveH(row + 1, col + 2, num ++) == true){
 		    return true;
 		}
-		//else{
+		else{
 		remove(3,row,col);
-		//    }
+		    }
 	     }
 	      if(move(4,row,col, num)){
-		if (solveH(row - 2, col ++, num ++) == true){
+		if (solveH(row - 2, col + 1, num ++) == true){
 		    return true;
 		}
-		//else{
+		else{
 		remove(4,row,col);
-		//    }
+		    }
 	      }
 	      if(move(5,row,col, num)){
-		if (solveH(row - 2, col --, num ++) == true){
+		if (solveH(row - 2, col -1, num ++) == true){
 		    return true;
 		}
-		//else{
+		else{
 		remove(5,row,col);
-		//    }
+		    }
 	      }
-	      if(move(6,row,col,num)){
-		if (solveH(row --, col -2, num ++) == true){
+	      if(move(6,row,col, num)){
+		if (solveH(row -1, col -2, num ++) == true){
 		    return true;
 		}
-		//else{
+		else{
 		remove(6,row,col);
 		    }
-	      // }
+	      }
 	      if(move(7,row,col, num)){
-		if (solveH(row ++, col -2, num ++) == true){
+		if (solveH(row + 1, col -2, num ++) == true){
 		    return true;
 		}
-		//else{ 
+		else{ 
 		remove(7,row,col);
-		//  }
+		    }
 	      }
 	      
 	}
 	return false;
     }
 
-
-
     public boolean solve(){
 	for(int i = 2; i < board.length -2 ; i ++){
 	    for(int k = 2; k < board[i].length-2; k++){
-		if(solveH(i,k,1) == true){
+		board[i][k] = 1;
+		if(solveH(i,k,2) == true){
 		    return true;
 		}
+		board[i][k] = 0;
 	    }
 	}
 	return false;
@@ -213,7 +213,8 @@ public class KnightBoard{
 	    }
 	}
 	return false;
-	}
+    }
+
 
 
     public boolean remove(int dir, int row, int col){
@@ -276,7 +277,7 @@ public class KnightBoard{
     
 
     public static void main(String[]args){
-	KnightBoard k = new KnightBoard(5,5);
+	Check k = new Check(5,6);
 	//System.out.println(k.move(7,4,4,1));
 	k.printSolution();
 	System.out.println(k.solve());
