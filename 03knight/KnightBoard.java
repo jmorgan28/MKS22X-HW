@@ -150,13 +150,13 @@ public class KnightBoard{
 	for(int i = 2; i < board.length -2 ; i ++){
 	    for(int k = 2; k < board[i].length-2; k++){
 		if((board.length - 4) * (board[0].length - 4) < 10){
-		    System.out.print(board[i][k] + " ");
+		    System.out.print("" + board[i][k] + " ");
 		}
 		else{
 		    if(board[i][k] < 10){
 			System.out.print("_" + board[i][k]+ " ");
 		    }
-		    else{System.out.print(board[i][k]+ " ");}
+		    else{System.out.print("" + board[i][k]+ " ");}
 		}
 	    }
 	    System.out.println();
@@ -294,7 +294,7 @@ public class KnightBoard{
     
 
     public static void main(String[]args){
-	KnightBoard k = new KnightBoard(7,7);
+	KnightBoard k = new KnightBoard(5,5);
 	//System.out.println(k.move(7,4,4,1));
 	k.printSolution();
 	System.out.println(k.solve());
