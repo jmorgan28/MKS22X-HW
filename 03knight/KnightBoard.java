@@ -37,13 +37,22 @@ public class KnightBoard{
         
     }
 
+    public void clear(){
+	for(int i = 0; i < board.length; i++){
+	    for(int k = 0; k < board[i].length; k ++){
+		board[i][k] = 0;
+	    }
+	}
+    }
+	
+
 
     public String name(){
 	return "Morgan,Jackson";
     }
 
     public boolean solveH(int row, int col, int num){
-	if(num > (board.length - 4) * (board[0].length - 4) + 1){
+	if(num > (board.length - 4) * (board[0].length - 4)){
 	    return true;
 	}
 	else{
@@ -52,6 +61,7 @@ public class KnightBoard{
 		    return true;
 		}
 		else{
+		    
 		remove(0,row,col);
 		    }
 	    }
@@ -60,6 +70,7 @@ public class KnightBoard{
 		    return true;
 		}
 		else{
+		     
 		remove(1,row,col);
 		    }
 	     }
@@ -68,6 +79,7 @@ public class KnightBoard{
 		    return true;
 		}
 		else{
+		     
 		remove(2,row,col);
 		    }
 	     }
@@ -76,6 +88,7 @@ public class KnightBoard{
 		    return true;
 		}
 		else{
+		     
 		remove(3,row,col);
 		    }
 	     }
@@ -84,6 +97,7 @@ public class KnightBoard{
 		    return true;
 		}
 		else{
+		     
 		remove(4,row,col);
 		    }
 	      }
@@ -92,6 +106,7 @@ public class KnightBoard{
 		    return true;
 		}
 		else{
+		    
 		remove(5,row,col);
 		    }
 	      }
@@ -100,6 +115,7 @@ public class KnightBoard{
 		    return true;
 		}
 		else{
+		    
 		remove(6,row,col);
 		    }
 	      }
@@ -107,7 +123,8 @@ public class KnightBoard{
 		if (solveH(row + 1, col -2, num ++) == true){
 		    return true;
 		}
-		else{ 
+		else{
+		   
 		remove(7,row,col);
 		    }
 	      }
@@ -277,7 +294,7 @@ public class KnightBoard{
     
 
     public static void main(String[]args){
-	KnightBoard k = new KnightBoard(5,6);
+	KnightBoard k = new KnightBoard(7,7);
 	//System.out.println(k.move(7,4,4,1));
 	k.printSolution();
 	System.out.println(k.solve());
