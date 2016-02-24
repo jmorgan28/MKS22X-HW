@@ -15,7 +15,7 @@ public class Bronze{
     public void getVar(){
 	try{
 	    
-	    Scanner in = new Scanner(new File("makelake.txt"));
+	    Scanner in = new Scanner(new File("makelake.in"));
 	    Scanner f = new Scanner(in.nextLine());
 	    int l =0;
 	    while(f.hasNextInt()){
