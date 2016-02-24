@@ -1,0 +1,43 @@
+import java.io.*;
+import java.util.Scanner;
+public class Bronze{
+    private int board[][];
+    private int R;
+    private int C;
+    private int E;
+    private int N;
+
+    public Bronze(){
+	R = 0;
+	C = 0;
+	E = 0;
+	N = 0;
+    }
+
+    public void getVar(){
+	try{
+	    int qwerty[] = {R,C,E,C};
+	    Scanner in = new Scanner(new File("makelake.txt"));
+	    Scanner f = new Scanner(in.nextLine());
+	    int i =0;
+	    while(f.hasNextInt()){
+		System.out.println(i);
+		qwerty[i] = f.nextInt();
+		i ++;}
+	}
+	catch(FileNotFoundException e){
+	     System.out.println("wrong file name");
+	}
+	System.out.println(R);
+	System.out.println(C);
+	System.out.println(E);
+	System.out.println(N);	   
+    }
+
+    public static void main(String[]args){
+	Bronze w = new Bronze();
+	w.getVar();
+    }
+	
+
+}
