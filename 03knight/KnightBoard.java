@@ -156,7 +156,7 @@ public class KnightBoard{
 		}
 		else{
 		    if(board[i][k] < 10){
-			System.out.print("_" + board[i][k]+ " ");
+			System.out.print(" " + board[i][k]+ " ");
 		    }
 		    else{System.out.print("" + board[i][k]+ " ");}
 		}

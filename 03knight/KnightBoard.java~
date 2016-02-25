@@ -52,84 +52,86 @@ public class KnightBoard{
     }
 
     public boolean solveH(int row, int col, int num){
-	if(num > (board.length - 4) * (board[0].length - 4)){
+	if(num > ((board.length - 4) * (board[0].length - 4))){
 	    return true;
 	}
 	else{
 	    if(move(0,row,col, num)){
-		if (solveH(row + 2, col -1, num ++) == true){
+		if (solveH(row + 2, col -1, num +1 )){
 		    return true;
 		}
 		else{
-		    
+		    //num --;    
 		remove(0,row,col);
 		    }
 	    }
 	     if(move(1,row,col, num)){
-		if (solveH(row + 2, col +1, num ++) == true){
+		if (solveH(row + 2, col +1, num + 1)){
 		    return true;
 		}
 		else{
-		     
+		    //num --;       
 		remove(1,row,col);
 		    }
 	     }
 	     if(move(2,row,col, num)){
-		if (solveH(row - 1, col +2, num ++) == true){
+		if (solveH(row - 1, col +2, num +1)){
 		    return true;
 		}
 		else{
-		     
+		    //num --;     
 		remove(2,row,col);
 		    }
 	     }
 	     if(move(3,row,col, num)){
-		if (solveH(row + 1, col + 2, num ++) == true){
+		if (solveH(row + 1, col + 2, num + 1)){
 		    return true;
 		}
 		else{
-		     
+		    //num --;    
 		remove(3,row,col);
 		    }
 	     }
 	      if(move(4,row,col, num)){
-		if (solveH(row - 2, col + 1, num ++) == true){
+		if (solveH(row - 2, col + 1, num + 1)){
 		    return true;
 		}
 		else{
-		     
+		    //num --;    
 		remove(4,row,col);
 		    }
 	      }
 	      if(move(5,row,col, num)){
-		if (solveH(row - 2, col -1, num ++) == true){
+		if (solveH(row - 2, col -1, num + 1)){
 		    return true;
 		}
 		else{
-		    
+		    //num --;    
 		remove(5,row,col);
 		    }
 	      }
 	      if(move(6,row,col, num)){
-		if (solveH(row -1, col -2, num ++) == true){
+		if (solveH(row -1, col -2, num + 1)){
 		    return true;
 		}
 		else{
-		    
+		    //num --;    
 		remove(6,row,col);
 		    }
 	      }
 	      if(move(7,row,col, num)){
-		if (solveH(row + 1, col -2, num ++) == true){
+		if (solveH(row + 1, col -2, num + 1)){
 		    return true;
 		}
 		else{
-		   
+		    //num --;    
 		remove(7,row,col);
 		    }
 	      }
+	     
 	      
 	}
+	//num --;
 	return false;
     }
 
@@ -255,7 +257,7 @@ public class KnightBoard{
 	}
 	if(dir == 3){
 	    if(board[row + 1][col + 2] > 0){
-		board[row + 1][col + 2] = 0;
+		board[row + 1][col + 2] =0;
 		return true;
 	    }
 	}
@@ -294,7 +296,7 @@ public class KnightBoard{
     
 
     public static void main(String[]args){
-	KnightBoard k = new KnightBoard(5,5);
+	KnightBoard k = new KnightBoard(4,6);
 	//System.out.println(k.move(7,4,4,1));
 	k.printSolution();
 	System.out.println(k.solve());
