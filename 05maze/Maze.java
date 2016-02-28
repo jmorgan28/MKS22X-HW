@@ -32,8 +32,8 @@ public class Maze{
 	    Scanner f = new Scanner(new File(filename));
             String w = f.nextLine();
 	    int num = 0;
-	    System.out.println(i);
-	    System.out.println(w.length());
+	    // System.out.println(i);
+	    //System.out.println(w.length());
 	    maze = new char[i][w.length()];
 	    for(int r  = 0; r < i; r ++){
 		for(int c = 0; c < w.length() ; c ++){
@@ -44,6 +44,16 @@ public class Maze{
 		   
 		}
 	    }
+	    startx = -1;
+	    starty = -1;
+	    for(int n  = 0; n < maze.length; n ++){
+		for(int m = 0; m < maze[n].length ; m ++){
+		    if(maze[n][m] == 'S'){
+			startx = n;
+			starty= m;
+		    }
+		}
+	    }		       
 	    
 	    }
 	
@@ -66,7 +76,7 @@ public class Maze{
             System.out.println("No starting point 'S' found in maze.");
             return false;
         }else{
-            maze[startx][starty] = ' ';
+            maze[startx][starty] = '@';
             return solve(startx,starty);
         }
     }
@@ -91,9 +101,40 @@ public class Maze{
             wait(20);
         }
 
-        //COMPLETE SOLVE
+        if(maze[x][y] == 'E'){
+	    return true;
+	}
+	if((maze[x + 1][y] == '.' || maze[x +1][y] == '#')&&
+	   (maze[x][y + 1] == '.' || maze[x][y + 1] == '#')&&
+	   (maze[x  - 1][y] == '.'|| maze[x  - 1][y] == '#')&&
+	   (maze[x][y - 1] == '.'|| maze[x][y - 1] == '#')){
+	    return false;
+	}
+ 	else{
+	    //maze[x][y] = '@';
+	    if(maze[x + 1][y] != '.' && maze[x +1][y] != '#'){
+		    if (solve(x +1, y)){
+			return true;
+		    }
+		}
+	    if(maze[x][y + 1] != '.' && maze[x][y + 1] != '#'){
+		    if (solve(x, y + 1)){
+			return true;
+		    }
+		}
+	    if(maze[x  - 1][y] != '.' && maze[x  -1][y] != '#'){
+		    if (solve(x  - 1, y)){
+			return true;
+		    }
+		}
+	     if(maze[x][y -1] != '.' && maze[x][y - 1] != '#'){
+		    if (solve(x, y - 1)){
+			return true;
+		    }
+		}
 
-        return false; //so it compiles
+	  return false; //so it compiles
+    }
     }
 
 
@@ -165,7 +206,7 @@ public class Maze{
 
     public static void main(String[]args){
 	Maze m = new Maze("data3.dat", false);
-	m.print();
+	//m.print();
     }
 
     
