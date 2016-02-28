@@ -120,6 +120,7 @@ public class Maze{
 	     count ++;
 	}
 	 if(count >= 3){
+	     maze[x][y] = '.';
 	     return false;
 	 }
  	else{
@@ -129,36 +130,36 @@ public class Maze{
 		    if (solve(x +1, y)){
 			return true;
 		    }
-		    else{
-			maze[x][y] = '.';
-		    }
+		    //else{
+			//maze[x][y] = '.';
+			// }
 		}
 	    if(maze[x][y + 1] != '.' && maze[x][y + 1] != '#'){
 		maze[x][y] = '@';
 		    if (solve(x, y + 1)){
 			return true;
 		    }
-		     else{
-			maze[x][y] = '.';
-		    }
+		    // else{
+			 //maze[x][y] = '.';
+			//}
 		}
 	    if(maze[x  - 1][y] != '.' && maze[x  -1][y] != '#'){
 		maze[x][y] = '@';
 		    if (solve(x  - 1, y)){
 			return true;
 		    }
-		     else{
-			maze[x][y] = '.';
-		    }
+		    //else{
+			 //maze[x][y] = '.';
+			//}
 		}
 	     if(maze[x][y -1] != '.' && maze[x][y - 1] != '#'){
 		 maze[x][y] = '@';
 		    if (solve(x, y - 1)){
 			return true;
 		    }
-		     else{
-			maze[x][y] = '.';
-		    }
+		    //  else{
+		    //	maze[x][y] = '.';
+		    //}
 		}
 
 	   //so it compiles
