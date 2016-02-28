@@ -128,33 +128,33 @@ public class Maze{
 		    if(solve(x + 1, y)){
 			return true;
 		    }
-		    // else{
-		    //	remove(0,x,y);
-		    //}
+		    else{
+		    	remove(0,x,y);
+		    }
 		}
 	    if (move(1,x,y)){
 		    if(solve(x, y +1 )){
 			return true;
 		    }
-		    //else{
-		    //	remove(1,x,y);
-		    //}
+		    else{
+		    	remove(1,x,y);
+		    }
 		}
 	    if (move(2,x,y)){
 		    if(solve(x - 1, y)){
 			return true;
 		    }
-		    //else{
-		    //	remove(2,x,y);
-		    //}
+		    else{
+			remove(2,x,y);
+		    }
 		}
 	    if (move(3,x,y)){
 		    if(solve(x, y - 1)){
 			return true;
 		    }
-		    //else{
-		    //	remove(3,x,y);
-		    //}
+		    else{
+		    	remove(3,x,y);
+		    }
 		}
 
 	   //so it compiles
