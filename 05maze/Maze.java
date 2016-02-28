@@ -106,12 +106,22 @@ public class Maze{
         if(maze[x][y] == 'E'){
 	    return true;
 	}
-	if((maze[x + 1][y] == '.' || maze[x +1][y] == '#')&&
-	   (maze[x][y + 1] == '.' || maze[x][y + 1] == '#')&&
-	   (maze[x  - 1][y] == '.'|| maze[x  - 1][y] == '#')&&
-	   (maze[x][y - 1] == '.'|| maze[x][y - 1] == '#')){
-	    return false;
+	int count = 0;
+	if(maze[x + 1][y] == '.' || maze[x +1][y] == '#'){
+	    count ++;
 	}
+	if(maze[x][y + 1] == '.' || maze[x][y + 1] == '#'){
+	    count ++;
+	}
+	if(maze[x  - 1][y] == '.'|| maze[x  - 1][y] == '#'){
+	    count ++;
+	}
+	 if(maze[x][y - 1] == '.'|| maze[x][y - 1] == '#'){
+	     count ++;
+	}
+	 if(count >= 3){
+	     return false;
+	 }
  	else{
 	    //maze[x][y] = '@';
 	    if(maze[x + 1][y] != '.' && maze[x +1][y] != '#'){
