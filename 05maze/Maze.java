@@ -22,29 +22,14 @@ public class Maze{
     public Maze(String filename, boolean ani){
         animate = ani;
 	try{Scanner in = new Scanner(new File(filename));
-	    int i = 0;
-	    int k =0;
+	    String s = "";
 	    while(in.hasNextLine()){
-		Scanner w = new Scanner(in.nextLine());
-		k =0;
-		while(w.hasNext()){
-		    k ++;
-		}
-		i ++;
+		s += in.nextLine();
+		s += "\n"; 
 	    }
-	    maze = new char[i][k];
-	    Scanner inn = new Scanner(new File(filename));
-	    int r = 0;
-	    while(inn.hasNextLine()){
-		Scanner f = new Scanner(inn.nextLine());
-		int c =0;
-		while(f.hasNext()){
-		    maze[r][c] = f.next().charAt(0);
-		    c ++;
-		}
-		r ++;
+	    System.out.println(s);
 	    }
-	}
+	
 
 	catch(FileNotFoundException e){
 	    System.out.println("file not found");}
@@ -162,7 +147,7 @@ public class Maze{
 
     public static void main(String[]args){
 	Maze m = new Maze("data1.dat", false);
-	m.print();
+	//	m.print();
     }
 
     
