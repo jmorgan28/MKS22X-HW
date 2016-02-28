@@ -23,11 +23,28 @@ public class Maze{
         animate = ani;
 	try{Scanner in = new Scanner(new File(filename));
 	    String s = "";
+	    int i = 0;
 	    while(in.hasNextLine()){
 		s += in.nextLine();
-		s += "\n"; 
+		i ++;
 	    }
-	    System.out.println(s);
+	    //System.out.println(s);
+	    Scanner f = new Scanner(new File(filename));
+            String w = f.nextLine();
+	    int num = 0;
+	    System.out.println(i);
+	    System.out.println(w.length());
+	    maze = new char[i][w.length()];
+	    for(int r  = 0; r < i; r ++){
+		for(int c = 0; c < w.length() ; c ++){
+		     maze[r][c] = s.charAt(num);
+		     num ++;
+
+
+		   
+		}
+	    }
+	    
 	    }
 	
 
@@ -140,14 +157,15 @@ public class Maze{
     public void print(){
 	for(int i = 0; i < maze.length; i++){
 	    for(int k = 0; k < maze[i].length; k++){
-		System.out.println(maze[i][k]);
+		System.out.print(maze[i][k]);
 	    }
+	    System.out.println();
 	}
     }
 
     public static void main(String[]args){
-	Maze m = new Maze("data1.dat", false);
-	//	m.print();
+	Maze m = new Maze("data3.dat", false);
+	m.print();
     }
 
     
