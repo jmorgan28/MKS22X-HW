@@ -119,10 +119,10 @@ public class Maze{
 	 if(maze[x][y - 1] == '.'|| maze[x][y - 1] == '#'){
 	     count ++;
 	}
-	 //if(count >= 3){
-	 //  maze[x][y] = '.';
-	 //  return false;
-	 //}
+	 if(count >= 3){
+	    maze[x][y] = '.';
+	    return false;
+	 }
  	else{
 	    if( move(0,x,y)){
 		    if(solve(x + 1, y)){
