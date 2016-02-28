@@ -98,7 +98,7 @@ public class Maze{
 
     */
     private boolean solve(int x, int y){
-        if(animate){
+         if(animate){
             System.out.println(this);
             wait(20);
         }
