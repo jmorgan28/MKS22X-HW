@@ -1,0 +1,101 @@
+import java.util.*;
+import java.io.*;
+
+public class Maze{
+
+
+    private char[][]maze;
+    private int startx,starty;
+    private boolean animate;
+
+    /*Constructor loads a maze text file.
+      1. The file contains a rectangular ascii maze, made with the following 4 characters:
+      '#' - locations that cannot be moved onto
+      ' ' - locations that can be moved onto
+      'E' - the location of the goal (only 1 per file)
+      'S' - the location of the start(only 1 per file)
+
+      2. The maze has a border of '#' around the edges. So you don't have to check for out of bounds!
+
+      3. When the file is not found, print an error and exit the program.
+    */
+    public Maze(String filename, boolean ani){
+        animate = ani;
+	try{Scanner in = new Scanner(new File(filename));
+	    String s = "";
+	    int i = 0;
+	    while(in.hasNextLine()){
+		s += in.nextLine();
+		i ++;
+	    }
+	    //System.out.println(s);
+	    Scanner f = new Scanner(new File(filename));
+            String w = f.nextLine();
+	    int num = 0;
+	    // System.out.println(i);
+	    //System.out.println(w.length());
+	    maze = new char[i][w.length()];
+	    for(int r  = 0; r < i; r ++){
+		for(int c = 0; c < w.length() ; c ++){
+		     maze[r][c] = s.charAt(num);
+		     num ++;
+
+
+		   
+		}
+	    }
+	    startx = -1;
+	    starty = -1;
+	    for(int n  = 0; n < maze.length; n ++){
+		for(int m = 0; m < maze[n].length ; m ++){
+		    if(maze[n][m] == 'S'){
+			startx = n;
+			starty= m;
+		    }
+		}
+	    }
+	    //System.out.println(startx);
+	    //System.out.println(starty);
+	    
+	    }
+	
+
+	catch(FileNotFoundException e){
+	    System.out.println("file not found");}
+	 
+	
+	    
+     }
+
+
+    /*Main Solve Function
+
+      Things to note:
+       When no S is contained in maze, print an error and return false.
+    */
+    public boolean solve(){
+        if(startx < 0){
+            System.out.println("No starting point 'S' found in maze.");
+            return false;
+        }else{
+            maze[startx][starty] = '@';
+            return solve(startx,starty);
+        }
+    }
+
+    /*
+      Recursive Solve function:
+
+      A solved maze has a path marked with '@' from S to E.
+      The S is replaced with '@' but the 'E' is not.
+
+      Postcondition:
+        Returns true when the maze is solved,
+        Returns false when the maze has no solution.
+
+        All visited spots that were not part of the solution are changed to '.'
+        All visited spots that are part of the solution are changed to '@'
+
+    */
+    private boolean solve(int x, int y){
+        
