@@ -119,7 +119,7 @@ public class Maze{
 	 if(maze[x][y - 1] == '.'|| maze[x][y - 1] == '#'){
 	     count ++;
 	}
-	 if(count >= 3){
+	 if(count >=  3){
 	    maze[x][y] = '.';
 	    return false;
 	 }
@@ -166,25 +166,25 @@ public class Maze{
 
     public boolean move(int i, int x, int y){
 	if(i == 0){
-	    if(maze[x + 1][y] != '.' && maze[x +1][y] != '#'){
+	    if(maze[x + 1][y] != '.' && maze[x +1][y] != '#' && maze[x +1][y] != '@'){
 		maze[x + 1][y] = '@';
 		return true;
 	    }
 	}
 	if(i == 1){
-	    if(maze[x][y + 1] != '.' && maze[x][y + 1] != '#'){
+	    if(maze[x][y + 1] != '.' && maze[x][y + 1] != '#'&& maze[x][y + 1] != '@'){
 		maze[x][y + 1] = '@';
 		return true;
 	    }
 	}
 	if(i == 2){
-	    if(maze[x - 1][y] != '.' && maze[x - 1][y] != '#'){
+	    if(maze[x - 1][y] != '.' && maze[x - 1][y] != '#' && maze[x -1][y] != '@'){
 		maze[x - 1][y] = '@';
 		return true;
 	    }
 	}
 	if(i == 3){
-	    if(maze[x][y - 1] != '.' && maze[x][y -1] != '#'){
+	    if(maze[x][y - 1] != '.' && maze[x][y -1] != '#' && maze[x][y - 1] != '@'){
 		maze[x][y -1] = '@';
 		return true;
 	    }
