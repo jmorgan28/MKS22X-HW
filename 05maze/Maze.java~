@@ -20,38 +20,8 @@ public class Maze{
       3. When the file is not found, print an error and exit the program.
     */
     public Maze(String filename, boolean ani){
-        animate = ani;
-	try{Scanner in = new Scanner(new File(filename));
-	    int i = 0;
-	    int k =0;
-	    while(in.hasNextLine()){
-		Scanner w = new Scanner(in.nextLine());
-		k =0;
-		while(w.hasNext()){
-		    k ++;
-		}
-		i ++;
-	    }
-	    maze = new char[i][k];
-	    Scanner inn = new Scanner(new File(filename));
-	    int r = 0;
-	    while(inn.hasNextLine()){
-		Scanner f = new Scanner(inn.nextLine());
-		int c =0;
-		while(f.hasNext()){
-		    maze[r][c] = f.next().charAt(0);
-		    c ++;
-		}
-		r ++;
-	    }
-	}
-
-	catch(FileNotFoundException e){
-	    System.out.println("file not found");}
-	 
-	
-	    
-     }
+        //COMPLETE CONSTRUCTOR
+    }
 
 
     /*Main Solve Function
@@ -150,19 +120,6 @@ public class Maze{
         }
         catch (InterruptedException e) {
         }
-    }
-
-    public void print(){
-	for(int i = 0; i < maze.length; i++){
-	    for(int k = 0; k < maze[i].length; k++){
-		System.out.println(maze[i][k]);
-	    }
-	}
-    }
-
-    public static void main(String[]args){
-	Maze m = new Maze("data1.dat", false);
-	m.print();
     }
 
     
