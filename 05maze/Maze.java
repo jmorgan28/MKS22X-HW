@@ -78,7 +78,7 @@ public class Maze{
             System.out.println("No starting point 'S' found in maze.");
             return false;
         }else{
-            maze[startx][starty] = ' ';
+            maze[startx][starty] = '@';
             return solve(startx,starty);
         }
     }
@@ -119,47 +119,42 @@ public class Maze{
 	 if(maze[x][y - 1] == '.'|| maze[x][y - 1] == '#'){
 	     count ++;
 	}
-	 if(count >= 3){
-	     maze[x][y] = '.';
-	     return false;
-	 }
+	 //if(count >= 3){
+	 //  maze[x][y] = '.';
+	 //  return false;
+	 //}
  	else{
-	    //maze[x][y] = '@';
-	    if(maze[x + 1][y] != '.' && maze[x +1][y] != '#'){
-		maze[x][y] = '@';
-		    if (solve(x +1, y)){
+	    if( move(0,x,y)){
+		    if(solve(x + 1, y)){
 			return true;
 		    }
-		    //else{
-			//maze[x][y] = '.';
-			// }
+		    else{
+			remove(0,x,y);
+		    }
 		}
-	    if(maze[x][y + 1] != '.' && maze[x][y + 1] != '#'){
-		maze[x][y] = '@';
-		    if (solve(x, y + 1)){
+	    if (move(1,x,y)){
+		    if(solve(x, y +1 )){
 			return true;
 		    }
-		    // else{
-			 //maze[x][y] = '.';
-			//}
+		    else{
+			remove(1,x,y);
+		    }
 		}
-	    if(maze[x  - 1][y] != '.' && maze[x  -1][y] != '#'){
-		maze[x][y] = '@';
-		    if (solve(x  - 1, y)){
+	    if (move(2,x,y)){
+		    if(solve(x - 1, y)){
 			return true;
 		    }
-		    //else{
-			 //maze[x][y] = '.';
-			//}
+		    else{
+			remove(2,x,y);
+		    }
 		}
-	     if(maze[x][y -1] != '.' && maze[x][y - 1] != '#'){
-		 maze[x][y] = '@';
-		    if (solve(x, y - 1)){
+	    if (move(3,x,y)){
+		    if(solve(x, y - 1)){
 			return true;
 		    }
-		    //  else{
-		    //	maze[x][y] = '.';
-		    //}
+		    else{
+			remove(3,x,y);
+		    }
 		}
 
 	   //so it compiles
@@ -169,6 +164,64 @@ public class Maze{
 
 
 
+    public boolean move(int i, int x, int y){
+	if(i == 0){
+	    if(maze[x + 1][y] != '.' && maze[x +1][y] != '#'){
+		maze[x + 1][y] = '@';
+		return true;
+	    }
+	}
+	if(i == 1){
+	    if(maze[x][y + 1] != '.' && maze[x][y + 1] != '#'){
+		maze[x][y + 1] = '@';
+		return true;
+	    }
+	}
+	if(i == 2){
+	    if(maze[x - 1][y] != '.' && maze[x - 1][y] != '#'){
+		maze[x - 1][y] = '@';
+		return true;
+	    }
+	}
+	if(i == 3){
+	    if(maze[x][y - 1] != '.' && maze[x][y -1] != '#'){
+		maze[x][y -1] = '@';
+		return true;
+	    }
+	}
+	return false;
+    }
+
+     public boolean remove(int i, int x, int y){
+	if(i == 0){
+	    if(maze[x + 1][y] != '.' && maze[x +1][y] != '#'){
+		maze[x + 1][y] = '.';
+		return true;
+	    }
+	}
+	if(i == 1){
+	    if(maze[x][y + 1] != '.' && maze[x][y + 1] != '#'){
+		maze[x][y + 1] = '.';
+		return true;
+	    }
+	}
+	if(i == 2){
+	    if(maze[x - 1][y] != '.' && maze[x - 1][y] != '#'){
+		maze[x - 1][y] = '.';
+		return true;
+	    }
+	}
+	if(i == 3){
+	    if(maze[x][y - 1] != '.' && maze[x][y -1] != '#'){
+		maze[x][y -1] = '.';
+		return true;
+	    }
+	}
+	return false;
+    }
+	    
+	
+    
     //FREE STUFF!!! *you should be aware of this*
 
 
