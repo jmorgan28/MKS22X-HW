@@ -53,7 +53,9 @@ public class Maze{
 			starty= m;
 		    }
 		}
-	    }		       
+	    }
+	    //System.out.println(startx);
+	    //System.out.println(starty);
 	    
 	    }
 	
@@ -76,7 +78,7 @@ public class Maze{
             System.out.println("No starting point 'S' found in maze.");
             return false;
         }else{
-            maze[startx][starty] = '@';
+            maze[startx][starty] = ' ';
             return solve(startx,starty);
         }
     }
@@ -113,28 +115,45 @@ public class Maze{
  	else{
 	    //maze[x][y] = '@';
 	    if(maze[x + 1][y] != '.' && maze[x +1][y] != '#'){
+		maze[x][y] = '@';
 		    if (solve(x +1, y)){
 			return true;
 		    }
+		    else{
+			maze[x][y] = '.';
+		    }
 		}
 	    if(maze[x][y + 1] != '.' && maze[x][y + 1] != '#'){
+		maze[x][y] = '@';
 		    if (solve(x, y + 1)){
 			return true;
 		    }
+		     else{
+			maze[x][y] = '.';
+		    }
 		}
 	    if(maze[x  - 1][y] != '.' && maze[x  -1][y] != '#'){
+		maze[x][y] = '@';
 		    if (solve(x  - 1, y)){
 			return true;
 		    }
+		     else{
+			maze[x][y] = '.';
+		    }
 		}
 	     if(maze[x][y -1] != '.' && maze[x][y - 1] != '#'){
+		 maze[x][y] = '@';
 		    if (solve(x, y - 1)){
 			return true;
 		    }
+		     else{
+			maze[x][y] = '.';
+		    }
 		}
 
-	  return false; //so it compiles
+	   //so it compiles
     }
+	return false;
     }
 
 
@@ -205,7 +224,8 @@ public class Maze{
     }
 
     public static void main(String[]args){
-	Maze m = new Maze("data3.dat", false);
+	Maze m = new Maze("data1.dat", false);
+	System.out.println(m.solve());
 	//m.print();
     }
 
