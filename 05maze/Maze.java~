@@ -294,11 +294,6 @@ public class Maze{
 	}
     }
 
-    public static void main(String[]args){
-	Maze m = new Maze("data3.dat", false);
-	System.out.println(m.solve());
-	//m.print();
-    }
 
     
 
