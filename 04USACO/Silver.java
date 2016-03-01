@@ -64,13 +64,26 @@ public class Silver{
 	
     }
 
+     public void reset(int [][] board){
+	for(int i =0; i < board.length; i ++){
+		for(int k =0; k < board[0].length; k ++){
+		    if(board[i][k] != -1){
+		    board[i][k] = 0;
+		    }
+		}
+	}
+	
+    }
+
     public void solve(){
-	int sx = bline[0]- 1;
-	int sy = bline[1] -1;
-	board[sx][sy] = 1;
 	int [][] aboard = new int [board.length][board[0].length]; 
 	copyBoard(aboard, board);
+	int sx = bline[0] -1;
+	int sy = bline[1] -1;
+	board[sx][sy] = 1;
 	for(int e = 1; e <= tline[2]; e ++){
+	    //printArray();
+	    //System.out.println();
 	    for(int i =0; i < board.length; i ++){
 		for(int k =0; k < board[0].length; k ++){
 		    if(board[i][k] != -1){
@@ -85,7 +98,7 @@ public class Silver{
 			    }
 			}
 			if(k != 0){
-			    if(board[i][k - 1] != -1){
+			    if(board[i][k - 1] != -1 ){
 				aboard[i][k] += board[i][k - 1];
 			    }
 			}
@@ -94,12 +107,14 @@ public class Silver{
 				aboard[i][k] += board[i][k + 1];
 			    }
 			}
+	        
 		    }
 		}
 	    }
 	    copyBoard(board,aboard);
+	    reset(aboard);
 	}
-	System.out.println(board[bline[2]- 1][bline[3]- 1]);
+	System.out.println(board[bline[2] -1][bline[3]-1] + ",7,Morgan,Jackson");
     }
 		    
 	    
@@ -110,8 +125,8 @@ public class Silver{
 
     public static void main(String[]args){
 	Silver s = new Silver();
-	s.printArray();
-	//s.solve();
+	//s.printArray();
+	s.solve();
 	//s.printArray();
     }
 	    
