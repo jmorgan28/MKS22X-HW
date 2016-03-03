@@ -15,22 +15,22 @@ public class Merge{
 	int a1 = 0;
 	int a2 = 0;
 	int [] copy = new int[(endA - startA) + (endB - startB) + 1];
-	while( (a1 < endA - startA + 1) && (a2 < endB - startB + 1)){
+	while( (a1 < endA - startA ) || (a2 < endB - startB)){
 	    int test = 0;
-	    //System.out.println(a1 + ": a1");
-	    //System.out.println(a2 + "; a2"); 
-	    //if(a1 >= endA -startA && (a2 < endB - startB)){
-	    //	copy[p] = ary2[a2];
-	    //	p ++;
-	    //	a2 ++;
-	    //	test ++;
-	    //}
-	    //if(a2 >=  endB -startB && test == 0){
-	    //	copy[p] = ary1[a1];
-	    //	p ++;
-	    //	a1 ++;
-	    //	test ++;
-	    //	}
+	    System.out.println(a1 + ": a1");
+	    System.out.println(a2 + "; a2"); 
+	    if(a1 >= endA -startA){
+	    	copy[p] = ary2[a2];
+	    	p ++;
+	    	a2 ++;
+	    	test ++;
+	    }
+	    if(a2 >=  endB -startB){
+	    	copy[p] = ary1[a1];
+	    	p ++;
+	    	a1 ++;
+	    	test ++;
+	    	}
 	    if(test == 0){
 	    if(ary1[a1] <= ary2[a2]){
 		copy[p] = ary1[a1];
