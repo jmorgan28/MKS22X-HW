@@ -232,6 +232,10 @@ public class Maze{
     //FREE STUFF!!! *you should be aware of this*
 
 
+     public String name(){
+	 return "Morgan,Jackson";
+     }
+
     public void clearTerminal(){
         System.out.println(CLEAR_SCREEN);
     }
