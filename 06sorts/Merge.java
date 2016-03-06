@@ -1,6 +1,6 @@
 public class Merge{
 
-    int [] pizza = {1,2,3,4,5,6,-3,-2,-1, 1, 232, 1244};
+    int [] pizza = {1,2,3,4,5,6,-3,-2,-1, 1,454, -32343, 2244, 0, 0 , 232, -2, 242420, -2324, 232, 1244};
 
     public void merge(int[]data, int startA, int endA, int startB, int endB){
 	int [] ary1 = new int[endA - startA + 1];
@@ -59,7 +59,7 @@ public class Merge{
     }
 
     public void action(){
-	merge(pizza,0,5,6,11);
+	mergesort(pizza);
     }
 
     public void print(){
@@ -73,8 +73,27 @@ public class Merge{
      }
 
 
+    public void mergesort(int [] data){
+	mergesortHelper(data, 0, data.length -1);
+    }
+
+    public  void mergesortHelper(int [] data, int start, int end){
+	if( start + ((end - start) /2) > start){
+	    mergesortHelper(data, start, start + ((end - start) /2)) ;
+	    }
+	if(start + ((end - start) /2) + 1 < end){
+	    mergesortHelper(data, start + ((end - start) /2) + 1 , end);
+	}
+	merge(data,start,start + ((end - start) /2), start + ((end - start) /2) + 1 , end);
+    }
+
+
     public static void main(String[]args){
 	Merge m = new Merge();
+	//Sorts m = new Sorts();
+	//int[] arrayName = {-24, 32, 459, 459, -7, -7, 2323, 34, 392, 0, -203, 25, 3994, -53, 8, -232323232, 23};
+	//Sorts.mergesort(arrayName);
+	//Sorts.printArray( arrayName);
 	m.action();
 	m.print();
     }
