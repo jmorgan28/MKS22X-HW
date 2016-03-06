@@ -112,7 +112,7 @@ public class Sorts{
     }
 
 
-     public void merge(int[]data, int startA, int endA, int startB, int endB){
+     public static void merge(int[]data, int startA, int endA, int startB, int endB){
 	int [] ary1 = new int[endA - startA + 1];
 	//System.out.println(ary1.length);
 	int [] ary2 = new int[endB - startB + 1];
@@ -172,18 +172,38 @@ public class Sorts{
 	    
 	 
 	
-		
+	public String name(){
+	 return "Morgan,Jackson";
+     }
+
+
+    public static void mergesort(int [] data){
+	mergesortHelper(data, 0, data.length -1);
+    }
+
+    public static void mergesortHelper(int [] data, int start, int end){
+	if( start + ((end - start) /2) > start){
+	    mergesortHelper(data, start, start + ((end - start) /2)) ;
+	    }
+	if(start + ((end - start) /2) + 1 < end){
+	    mergesortHelper(data, start + ((end - start) /2) + 1 , end);
+	}
+	merge(data,start,start + ((end - start) /2), start + ((end - start) /2) + 1 , end);
+    }
+	
 	    
 	
 
 
      public static void main(String[]args){
-	 //int[] arrayName = {1 , 2,  9, 5, 0, 3};
-	 //int[] arrayName = {-24, 32, 459, 459, -7, -7, 2323, 34, 392, 0, -203, 25, 3994, -53, 8};
-	 //Sorts.printArray( arrayName);
+	 //int[] arrayName = {1 , 2,  9, 5, 0, 3, 32, -1232};
+	 //int[] arrayName = {2, 1};
+	 int[] arrayName = {-24, 32, 459, 459, -7, -7, 2323, 34, 392, 0, -203, 25, 3994, -53, 8, -232323232, 23};
+	 Sorts.printArray( arrayName);
 	 //System.out.println();
 	 //Sorts.insertionSort( arrayName);
-	//Sorts.printArray( arrayName);
+	 mergesort(arrayName);
+	Sorts.printArray( arrayName);
 	 //int [] ary = new int[100]; 
 	 // Sorts.printArray(Sorts.fillRandom(ary));
 	}

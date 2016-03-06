@@ -1,6 +1,6 @@
 public class Merge{
 
-    int [] pizza = {1,2,3,4,5,-4,-3,-2,-1, 1, 232, 1244 ,22442,};
+    int [] pizza = {1,2,3,4,5,6,-3,-2,-1, 1, 232, 1244};
 
     public void merge(int[]data, int startA, int endA, int startB, int endB){
 	int [] ary1 = new int[endA - startA + 1];
@@ -59,7 +59,7 @@ public class Merge{
     }
 
     public void action(){
-	merge(pizza,0,4,5,12);
+	merge(pizza,0,5,6,11);
     }
 
     public void print(){
@@ -67,6 +67,10 @@ public class Merge{
 	    System.out.print(pizza[i] +",");
 	}
     }
+
+    public String name(){
+	 return "Morgan,Jackson";
+     }
 
 
     public static void main(String[]args){
