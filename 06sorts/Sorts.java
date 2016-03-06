@@ -172,7 +172,7 @@ public class Sorts{
 	    
 	 
 	
-	public String name(){
+	public static String name(){
 	 return "Morgan,Jackson";
      }
 
@@ -204,6 +204,7 @@ public class Sorts{
 	 //Sorts.insertionSort( arrayName);
 	 mergesort(arrayName);
 	Sorts.printArray( arrayName);
+	System.out.println(name());
 	 //int [] ary = new int[100]; 
 	 // Sorts.printArray(Sorts.fillRandom(ary));
 	}
