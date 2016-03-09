@@ -5,10 +5,8 @@ public class Quick{
 
     private static int partition(int[]data, int left, int right){
 	int split = (int)(Math.random() * (right - left))+ left;
-	//System.out.println(split);
-	//int [] store = new int[right - left];
 	int store = data[split];
-	//System.out.println(store);
+	System.out.println("the split is at " + split);
 	data[split] = data[right];
 	data[right] = store;
 	int transfer = 0;
@@ -24,7 +22,7 @@ public class Quick{
 	      if(data[i] < store){
 		  i ++;
 	      }
-	      //right --;
+	  
 	  }
 	  else{
 		transfer = data[i];
@@ -34,19 +32,12 @@ public class Quick{
 		if(data[i] > store){
 		  i ++;
 	      }
-		//left ++;
+	
 	  }
 	  
 	 
 	}
 
-        //i = 0;
-	//while(data[i] < store){
-	    //i ++;
-	    //}
-	//transfer = data[i + 1];
-	//data[i + 1] = store;
-        //data[remain] = transfer;
 	if (data[right] >= store){
 	    transfer = data[right];
 	    data[right] = store;
@@ -61,6 +52,45 @@ public class Quick{
 	}
 	
 		
+    }
+
+
+    public static int quickselect(int[]data, int k){
+	return quickselect(data,k,0,data.length -1);
+    }
+
+    private static int quickselect(int [] data,int k, int start, int end){
+	System.out.println("the start value is " + start);
+	System.out.println("the end value is " + end);
+	int rem = partition(data,start,end);
+	System.out.println("the value gotten is " + rem);
+	//System.out.println(k);
+	if(rem == k){
+	    return data[k];
+	}
+	else{
+	    
+	    if( rem < k){
+		//	if(start == data.length - 2){
+		    //return quickselect(data,k,rem, end); 
+		//}
+		//else{
+		return quickselect(data,k,rem + 1, end);
+		//}
+	    }
+	    if(rem > k){
+		//if(end == 1 && start != 0){
+		    //return quickselect(data,k,start- 1,end);
+		 //}
+		//if(end == 1 && start == 0){
+		    //return quickselect(data,k,start,end);
+		 //}
+		 //else{
+		return quickselect(data,k,start,rem - 1);
+		//}
+	    }
+	}
+	return -1;					
     }
 	
 	    
@@ -79,7 +109,9 @@ public class Quick{
 
     public static void main(String[]args){
 	int [] data = {2,4324,-1234,295,3,55,62,305838554,2030,-19394,0,293940,105,15,39230,9420304,-103399};
-	System.out.println(partition(data,0,data.length -1));
+	//System.out.println(data.length - 10);
+	System.out.println(Quick.quickselect(data,5));
+	//System.out.println(partition(data,0,1));
 	print(data);
     }
 	
