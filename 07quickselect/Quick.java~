@@ -4,10 +4,18 @@ public class Quick{
 
 
     private static int partition(int[]data, int left, int right){
-	int split = (int)(Math.random() * (right - left))+ left;
-	System.out.println(split);
-	//int [] store = new int[right - left];
+	if(right - left == 1){
+	    if(data[right] < data[left]){
+		int r = data[right];
+		data[right] = data[left];
+		data[left] = r;
+		//return left;
+	    }
+	    return left + (int)(Math.random()*2);
+	}
+	int split = (int)(Math.random() * (right - left + 1))+ left;
 	int store = data[split];
+	//System.out.println("the split is at " + split);
 	data[split] = data[right];
 	data[right] = store;
 	int transfer = 0;
@@ -23,7 +31,7 @@ public class Quick{
 	      if(data[i] < store){
 		  i ++;
 	      }
-	      //right --;
+	  
 	  }
 	  else{
 		transfer = data[i];
@@ -33,60 +41,81 @@ public class Quick{
 		if(data[i] > store){
 		  i ++;
 	      }
-		//left ++;
+	
 	  }
 	  
 	 
 	}
-	//transfer = data[i -1];
-	//	data[i - 1] = data[store];
-	//	data[remain] = transfer;
-		
-	return split;
-    }
-	// slow version
-	/*int more = 0;
-	int less = 0;
-	for(int i = 0; i + left < right; i ++){
-	    if(data[i + left] < store){
-		less ++;
-	    }
-	    if(data[i + left] > store){
-		more ++;
-	    }
+
+	if (data[right] >= store){
+	    transfer = data[right];
+	    data[right] = store;
+	    data[remain] = transfer;
+	    return right;
 	}
-	System.out.println(more);
-	System.out.println(less);
+	else{
+	    transfer = data[right + 1];
+	    data[right + 1] = store;
+	    data[remain] = transfer;
+	    return right + 1;
+	}
 	
-	int [] m = new int[more];
-	int [] l = new int[less];
-	int a = 0;
-	int b = 0;
-	for(int i = 0; i + left < right; i ++){
-	    if(data[i + left] < store){
-		l[a] = data[i + left];
-		a ++;
-	    }
-	    if(data[i + left] > store){
-		m[a] = data[i + left];
-		b ++;
-	    }
-	}
-	a = 0;
-	b = 0;
-	for(int i = 0; i + left < right; i ++){
-	    if( a < l.length){
-		data[i + left] = l[a];
-		a ++;
-	    }
-	    if( b < m.length && a >= l.length){
-		data[i + left] = m[b];
-		b ++;
+		
+    }
+
+
+    public static int quickselect(int[]data, int k){
+	return quickselect(data,k,0,data.length -1);
+    }
+
+    private static int quickselect(int [] data,int k, int start, int end){
+	int s = start;
+	int e = end;
+	if(s == e){
+	    if(e < data.length - 1){
+	        e ++;
+	       }
+	    else{
+		if(s > 0){
+		    s --;
+		}
 	    }
 	}
-       return split;
-       }*/
     
+	//System.out.println("the start value is " + s);
+	//System.out.println("the end value is " + e);
+	//print(data);
+	int rem = partition(data,s,e);
+	//System.out.println("the value gotten is " + rem);
+	//System.out.println(k);
+	if(rem == k){
+	    return data[k];
+	}
+	else{
+	    
+	    if( rem < k){
+		//	if(start == data.length - 2){
+		    //return quickselect(data,k,rem, end); 
+		//}
+		//else{
+		return quickselect(data,k,rem + 1, e);
+		//}
+	    }
+	    if(rem > k){
+		//if(end == 1 && start != 0){
+		    //return quickselect(data,k,start- 1,end);
+		 //}
+		//if(end == 1 && start == 0){
+		    //return quickselect(data,k,start,end);
+		 //}
+		 //else{
+		return quickselect(data,k,start,rem - 1);
+		//}
+	    }
+	}
+	return -1;					
+    }
+	
 	    
 	    
     	public static String name(){
@@ -99,11 +128,32 @@ public class Quick{
 	}
     }
 
+    public static void quickSort(int[]data){
+	quickSort(data,0,data.length -1);
+    }
+
+    private static void quickSort(int[]data,int left,int right){
+	while(left < right){
+	    partition(data,left,right);
+	    quickSort(data,left + 1, right);
+	    quickSort(data,left,right - 1);
+	}
+    }
+	    
+	    
+	    
+	    
+	
+
+
 
 
     public static void main(String[]args){
 	int [] data = {2,4324,-1234,295,3,55,62,305838554,2030,-19394,0,293940,105,15,39230,9420304,-103399};
-	partition(data,0,data.length -1);
+	quikSort(data);
+	//System.out.println(data.length - 10);
+	//System.out.println(Quick.quickselect(data,7) + "---------------");
+	//System.out.println(partition(data,5,6));
 	print(data);
     }
 	

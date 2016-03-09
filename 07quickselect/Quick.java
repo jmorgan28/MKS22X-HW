@@ -128,14 +128,33 @@ public class Quick{
 	}
     }
 
+    public static void quickSort(int[]data){
+	quickSort(data,0,data.length -1);
+    }
+
+    private static void quickSort(int[]data,int left,int right){
+	if(left < right){
+	    partition(data,left,right);
+	    quickSort(data,left + 1, right);
+	    quickSort(data,left,right - 1);
+	}
+    }
+	    
+	    
+	    
+	    
+	
+
+
 
 
     public static void main(String[]args){
-	int [] data = {2,4324,-1234,295,3,55,62,305838554,2030,-19394,0,293940,105,15,39230,9420304,-103399};
+	int [] data = {2,1};//,4324,-1234,295,3,55,305838554,2030,-19394,0,293940,105,15,39230,9420304,-103399};
+	quickSort(data);
 	//System.out.println(data.length - 10);
 	//System.out.println(Quick.quickselect(data,7) + "---------------");
 	//System.out.println(partition(data,5,6));
-	//print(data);
+	print(data);
     }
 	
 	
