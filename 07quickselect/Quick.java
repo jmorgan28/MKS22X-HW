@@ -4,9 +4,18 @@ public class Quick{
 
 
     private static int partition(int[]data, int left, int right){
-	int split = (int)(Math.random() * (right - left))+ left;
+	if(right - left == 1){
+	    if(data[right] < data[left]){
+		int r = data[right];
+		data[right] = data[left];
+		data[left] = r;
+		//return left;
+	    }
+	    return left + (int)(Math.random()*2);
+	}
+	int split = (int)(Math.random() * (right - left + 1))+ left;
 	int store = data[split];
-	System.out.println("the split is at " + split);
+	//System.out.println("the split is at " + split);
 	data[split] = data[right];
 	data[right] = store;
 	int transfer = 0;
@@ -60,10 +69,24 @@ public class Quick{
     }
 
     private static int quickselect(int [] data,int k, int start, int end){
-	System.out.println("the start value is " + start);
-	System.out.println("the end value is " + end);
-	int rem = partition(data,start,end);
-	System.out.println("the value gotten is " + rem);
+	int s = start;
+	int e = end;
+	if(s == e){
+	    if(e < data.length - 1){
+	        e ++;
+	       }
+	    else{
+		if(s > 0){
+		    s --;
+		}
+	    }
+	}
+    
+	//System.out.println("the start value is " + s);
+	//System.out.println("the end value is " + e);
+	//print(data);
+	int rem = partition(data,s,e);
+	//System.out.println("the value gotten is " + rem);
 	//System.out.println(k);
 	if(rem == k){
 	    return data[k];
@@ -75,7 +98,7 @@ public class Quick{
 		    //return quickselect(data,k,rem, end); 
 		//}
 		//else{
-		return quickselect(data,k,rem + 1, end);
+		return quickselect(data,k,rem + 1, e);
 		//}
 	    }
 	    if(rem > k){
@@ -110,9 +133,9 @@ public class Quick{
     public static void main(String[]args){
 	int [] data = {2,4324,-1234,295,3,55,62,305838554,2030,-19394,0,293940,105,15,39230,9420304,-103399};
 	//System.out.println(data.length - 10);
-	System.out.println(Quick.quickselect(data,5));
-	//System.out.println(partition(data,0,1));
-	print(data);
+	//System.out.println(Quick.quickselect(data,7) + "---------------");
+	//System.out.println(partition(data,5,6));
+	//print(data);
     }
 	
 	
