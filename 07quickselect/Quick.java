@@ -72,27 +72,29 @@ public class Quick{
 	int s = start;
 	int e = end;
 	if(s == e){
-	    if(e < data.length - 1){
+	    return data[s];
+	    /*if(e < data.length - 1){
 	        e ++;
 	       }
 	    else{
 		if(s > 0){
 		    s --;
 		}
-	    }
+		}*/
 	}
     
 	//System.out.println("the start value is " + s);
 	//System.out.println("the end value is " + e);
 	//print(data);
-	int rem = partition(data,s,e);
+	
 	//System.out.println("the value gotten is " + rem);
 	//System.out.println(k);
-	if(rem == k){
+	
+	else{
+	    int rem = partition(data,s,e);
+	    if(rem == k){
 	    return data[k];
 	}
-	else{
-	    
 	    if( rem < k){
 		//	if(start == data.length - 2){
 		    //return quickselect(data,k,rem, end); 
@@ -149,12 +151,12 @@ public class Quick{
 
 
     public static void main(String[]args){
-	int [] data = {2,1};//,4324,-1234,295,3,55,305838554,2030,-19394,0,293940,105,15,39230,9420304,-103399};
-	quickSort(data);
+	//int [] data = {2,1,4324,-1234,295,3,55,305838554,2030,-19394,0,293940,105,15,39230,9420304,-103399,343};
 	//System.out.println(data.length - 10);
-	//System.out.println(Quick.quickselect(data,7) + "---------------");
+	//System.out.println(Quick.quickselect(data,13) + "---------------");
+	//Quick.quickSort(data);
 	//System.out.println(partition(data,5,6));
-	print(data);
+	//print(data);
     }
 	
 	
