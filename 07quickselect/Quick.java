@@ -3,7 +3,7 @@ public class Quick{
 
 
 
-    private static int partition(int[]data, int left, int right){
+    private static int partitionOld(int[]data, int left, int right){
 	if(right - left == 1){
 	    if(data[right] < data[left]){
 		int r = data[right];
@@ -64,11 +64,56 @@ public class Quick{
     }
 
 
+    private int swap(int [] data, int pos1, int pos2){
+	int store = data[pos1];
+	data[pos1] = data[pos2];
+	data[pos2] = store;
+    }
+	
+
+    private int parition(int [] data, int left, int right){
+	int split = (int)(Math.random() * (right - left + 1))+ left;
+	swap(data,split, data.length -1);
+	right --;
+	while(right != left){
+	    if(data[left] >= data[data.length - 1]){
+		swap(data,left,right);
+		right --;
+	    }
+	    else{left ++;}
+	}
+	    
+    }
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public static int quickselect(int[]data, int k){
 	return quickselect(data,k,0,data.length -1);
     }
 
-    private static int quickselect(int [] data,int k, int start, int end){
+    private static int quickselectOld(int [] data,int k, int start, int end){
 	int s = start;
 	int e = end;
 	if(s == e){
@@ -91,7 +136,7 @@ public class Quick{
 	//System.out.println(k);
 	
 	else{
-	    int rem = partition(data,s,e);
+	    int rem = partitionOld(data,s,e);
 	    if(rem == k){
 	    return data[k];
 	}
@@ -100,7 +145,7 @@ public class Quick{
 		    //return quickselect(data,k,rem, end); 
 		//}
 		//else{
-		return quickselect(data,k,rem + 1, e);
+		return quickselectOld(data,k,rem + 1, e);
 		//}
 	    }
 	    if(rem > k){
@@ -111,7 +156,7 @@ public class Quick{
 		    //return quickselect(data,k,start,end);
 		 //}
 		 //else{
-		return quickselect(data,k,start,rem - 1);
+		return quickselectOld(data,k,start,rem - 1);
 		//}
 	    }
 	}
@@ -134,11 +179,11 @@ public class Quick{
 	quickSort(data,0,data.length -1);
     }
 
-    private static void quickSort(int[]data,int left,int right){
+    private static void quickSortOld(int[]data,int left,int right){
 	if(left < right){
-	    partition(data,left,right);
-	    quickSort(data,left + 1, right);
-	    quickSort(data,left,right - 1);
+	    partitionOld(data,left,right);
+	    quickSortOld(data,left + 1, right);
+	    quickSortOld(data,left,right - 1);
 	}
     }
 	    
