@@ -64,14 +64,14 @@ public class Quick{
     }
 
 
-    private int swap(int [] data, int pos1, int pos2){
+    private static void swap(int [] data, int pos1, int pos2){
 	int store = data[pos1];
 	data[pos1] = data[pos2];
 	data[pos2] = store;
     }
 	
 
-    private int parition(int [] data, int left, int right){
+    private static int partition(int [] data, int left, int right){
 	int split = (int)(Math.random() * (right - left + 1))+ left;
 	swap(data,split, data.length -1);
 	right --;
@@ -82,8 +82,18 @@ public class Quick{
 	    }
 	    else{left ++;}
 	}
+	
+	if (data[right] >= data.length - 1){
+	    swap(data, right, data.length -1);
+	    return right;
+	}
+	else{
+	    swap(data, right + 1, data.length -1);
+	    return right + 1;
+	}
 	    
     }
+
 	
 	
 
@@ -109,8 +119,8 @@ public class Quick{
 
 
 
-    public static int quickselect(int[]data, int k){
-	return quickselect(data,k,0,data.length -1);
+    public static int quickselectOld(int[]data, int k){
+	return quickselectOld(data,k,0,data.length -1);
     }
 
     private static int quickselectOld(int [] data,int k, int start, int end){
@@ -175,8 +185,8 @@ public class Quick{
 	}
     }
 
-    public static void quickSort(int[]data){
-	quickSort(data,0,data.length -1);
+    public static void quickSortOld(int[]data){
+	quickSortOld(data,0,data.length -1);
     }
 
     private static void quickSortOld(int[]data,int left,int right){
@@ -196,12 +206,12 @@ public class Quick{
 
 
     public static void main(String[]args){
-	//int [] data = {2,1,4324,-1234,295,3,55,305838554,2030,-19394,0,293940,105,15,39230,9420304,-103399,343};
+	int [] data = {2,1,4324,-1234,295,3,55,305838554,2030,-19394,0,293940,105,15,39230,9420304,-103399,343};
 	//System.out.println(data.length - 10);
 	//System.out.println(Quick.quickselect(data,13) + "---------------");
 	//Quick.quickSort(data);
-	//System.out.println(partition(data,5,6));
-	//print(data);
+	System.out.println(partition(data,0,data.length - 1));
+	print(data);
     }
 	
 	
