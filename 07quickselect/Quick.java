@@ -2,9 +2,6 @@ import java.util.Arrays;
 
 public class Quick{
     
-
-
-
     private static int partitionOld(int[]data, int left, int right){
 	int split = (int)(Math.random() * (right + 1 - left))+ left;
 	swap(data,split, right);
@@ -100,28 +97,31 @@ public class Quick{
 	int [] ret = new int[2];
 	int [] store = new int[right - left + 1];
 	int split = (int)(Math.random() * (right + 1 - left))+ left;
-	int l = left;
-	int r = right;
-	//swap(data,split, right);
-	//int rem = right;
-	//right --;
-	//System.out.println(split);
-	while(right != left){
-	    
-	    if(data[left] > data[split]){
-		store[right- l] = data[left- l];
-		right --;
+	System.out.println(split);
+	swap(data,split, right);
+	int rem = right;
+	right --;
+	int l = 0;
+	int r = store.length - 1;
+	
+	for(int i = 0; i < rem; i ++){	    
+	    if(data[i] > data[rem]){
+		store[r] = data[i];
+		r --;
 	    }
 	    else{
-		if(data[left] < data[split]){
-		    store[left - l] = data[left - l];
+		if(data[i] < data[rem]){
+		    store[l] = data[i];
+		    l ++;
 		}
-		left ++;
+	
 	    }
+	   
 	}
 	print(store);
-	return ret;
 	
+	return ret;
+    }
 	//if (data[right] > data[rem]){
 	//  swap(data, right, rem);
 	//  return right;
@@ -131,7 +131,7 @@ public class Quick{
 	//   return right + 1;
 	//}
 	    
-    }
+    
 
 
 
@@ -250,8 +250,8 @@ public class Quick{
 
 	//System.out.println(partitionOld(data,0,data.length - 1));
 	//Quick.quickSortOld(data);
-	Quick.partition(data,0, data.length);
-	print(data);
+	Quick.partition(data,0, data.length - 1);
+	//print(data);
     }
 	
 	
