@@ -110,8 +110,17 @@ public class Quick{
     }
 
 
+    public static int quickSelectOld(int[]data, int k){
+	return quickselectOld(data,k,0,data.length -1);
+    }
+
+
 
        public static int quickselect(int[]data, int k){
+	return quickselect(data,k,0,data.length -1);
+    }
+
+      public static int quickSelect(int[]data, int k){
 	return quickselect(data,k,0,data.length -1);
     }
 
