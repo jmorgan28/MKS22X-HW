@@ -111,7 +111,7 @@ public class Quick{
 
 
 
-    /*   public static int quickselect(int[]data, int k){
+       public static int quickselect(int[]data, int k){
 	return quickselect(data,k,0,data.length -1);
     }
 
@@ -125,10 +125,10 @@ public class Quick{
 	    int [] rem = partition(data,s,e);
 	    int r0 = rem[0];
 	    int r1 = rem[1];
-	    print(data);
-	    System.out.println();
-	    System.out.println(r0);
-	    System.out.println(r1);
+	    //print(data);
+	    //System.out.println();
+	    //System.out.println(r0);
+	    //System.out.println(r1);
 	    if(r0 <= k && r1 >= k){
 	    return data[k];
 	}
@@ -142,7 +142,7 @@ public class Quick{
 	
 	
 	return -1;					
-	}*/
+	}
 
 	    
 	    
@@ -200,18 +200,18 @@ public class Quick{
     public static void main(String[]args){
 	int [] data = {2,1,4324,-1234,7,295,3,7,7,55,305838554,2030,-19394,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,0,293940,105,15,39230,9420304,-103399,343};
 	//System.out.println(data.length - 10);
-	//System.out.println(Quick.quickselectOld(data,2) + "---------------");
-	//System.out.println(Quick.quickselect(data,2) + "---------------");
-	int[] d = new int [40000];
-	int[] c = new int [d.length];
+	System.out.println(Quick.quickselectOld(data,data.length -10) + "---------------");
+	System.out.println(Quick.quickselect(data,data.length -10) + "---------------");
+	//int[] d = new int [40000];
+	//int[] c = new int [d.length];
 
-	for(int i = 0; i < d.length; i++){
-	d[i]= (int)(Math.random()* 4);
-	c[i]= d[i];
-	}
-	quickSort(d); //or even your old quicksort!!!
-	Arrays.sort(c);
-	System.out.println("Done: Sorted="+Arrays.equals(d,c));
+	//for(int i = 0; i < d.length; i++){
+	//d[i]= (int)(Math.random()* Integer.MAX_VALUE);
+	//c[i]= d[i];
+	//}
+	//quickSort(d); //or even your old quicksort!!!
+	//Arrays.sort(c);
+	//System.out.println("Done: Sorted="+Arrays.equals(d,c));
 
 
 	//System.out.println(partitionOld(data,0,data.length - 1));
