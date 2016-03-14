@@ -37,6 +37,7 @@ public class Quick{
 
     private static int[] partition(int [] data, int left, int right){
 	int [] ret = new int[2];
+	int st = left;
 	int [] store = new int[right - left + 1];
 	int split = (int)(Math.random() * (right + 1 - left))+ left;
 	//System.out.println(split);
@@ -76,8 +77,8 @@ public class Quick{
 	//System.out.println(r);
 	//System.out.println(l);
 	//print(store);
-	ret[0] = l;
-	ret[1] = r;
+	ret[0] = l + st;
+	ret[1] = r + st;
 	return ret;
     }
 	
@@ -174,10 +175,14 @@ public class Quick{
     }
 
     private static void quickSort(int[]data,int left,int right){
+	//System.out.println("left " + left);
+	//System.out.println("right " + right);
 	if(left < right){
 	    int [] p = partition(data,left,right);
 	    int p0 = p[0];
 	    int p1 = p[1];
+	    //System.out.println("p0 " + p0);
+	    //System.out.println("p1 " + p1);
 	    quickSort(data,p1 + 1, right);
 	    quickSort(data,left,p0 - 1);
 	   }
@@ -197,22 +202,25 @@ public class Quick{
 	//System.out.println(data.length - 10);
 	//System.out.println(Quick.quickselectOld(data,2) + "---------------");
 	//System.out.println(Quick.quickselect(data,2) + "---------------");
-	//int[] d = new int [40000];
-	//int[] c = new int [d.length];
+	int[] d = new int [40000];
+	int[] c = new int [d.length];
 
-	//for(int i = 0; i < d.length; i++){
-	//d[i]= (int)(Math.random()* 4);
-	//c[i]= d[i];
-	//}
-	//quickSort(d); //or even your old quicksort!!!
-	//Arrays.sort(c);
-	//System.out.println("Done: Sorted="+Arrays.equals(d,c));
+	for(int i = 0; i < d.length; i++){
+	d[i]= (int)(Math.random()* 4);
+	c[i]= d[i];
+	}
+	quickSort(d); //or even your old quicksort!!!
+	Arrays.sort(c);
+	System.out.println("Done: Sorted="+Arrays.equals(d,c));
 
 
 	//System.out.println(partitionOld(data,0,data.length - 1));
-	Quick.quickSort(data);
-	//Quick.partition(data,0, data.length - 1);
-	print(data);
+	//Quick.quickSort(data);
+	//int [] f = Quick.partition(data,data.length -4, data.length - 1);
+	//System.out.println(f[0]);
+	//System.out.println(f[1]);
+	//System.out.println(data[f[1]]);
+	//print(data);
     }
 	
 	
