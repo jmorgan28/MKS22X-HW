@@ -97,13 +97,13 @@ public class Quick{
 	int [] ret = new int[2];
 	int [] store = new int[right - left + 1];
 	int split = (int)(Math.random() * (right + 1 - left))+ left;
-	System.out.println(split);
+	//System.out.println(split);
+        int numb = data[split];
 	swap(data,split, right);
 	int rem = right;
 	right --;
 	int l = 0;
 	int r = store.length - 1;
-	
 	for(int i = 0; i < rem; i ++){	    
 	    if(data[i] > data[rem]){
 		store[r] = data[i];
@@ -118,8 +118,24 @@ public class Quick{
 	    }
 	   
 	}
-	print(store);
-	
+	right ++;
+	int i = 0;
+	while(left <= right){
+	    while(i < store.length){
+		if(i>= l && i <= r){
+		    data[left] = numb;
+		}
+		else{data[left] = store[i];}
+		i ++;
+		left ++;
+	    }
+	}
+		
+	//System.out.println(r);
+	//System.out.println(l);
+	//print(store);
+	ret[0] = l;
+	ret[1] = r;
 	return ret;
     }
 	//if (data[right] > data[rem]){
@@ -198,6 +214,7 @@ public class Quick{
      }
     
     public static void print(int [] data){
+	System.out.println();
 	for(int r = 0; r < data.length; r ++){
 	    System.out.print(data[r] + ",");
 	}
@@ -233,7 +250,7 @@ public class Quick{
 
 
     public static void main(String[]args){
-	int [] data = {2,1,4324,-1234,295,3,55,305838554,2030,-19394,0,293940,105,15,39230,9420304,-103399,343};
+	int [] data = {2,1,4324,-1234,7,295,3,7,7,55,305838554,2030,-19394,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,0,293940,105,15,39230,9420304,-103399,343};
 	//System.out.println(data.length - 10);
 	//System.out.println(Quick.quickselectOld(data,5) + "---------------");
 	//int[] d = new int [40000];
@@ -251,7 +268,7 @@ public class Quick{
 	//System.out.println(partitionOld(data,0,data.length - 1));
 	//Quick.quickSortOld(data);
 	Quick.partition(data,0, data.length - 1);
-	//print(data);
+	print(data);
     }
 	
 	
