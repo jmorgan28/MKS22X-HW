@@ -202,21 +202,22 @@ public class Quick{
 	//System.out.println(data.length - 10);
 	//System.out.println(Quick.quickselectOld(data,data.length -10) + "---------------");
 	//	System.out.println(Quick.quickselect(data,data.length -10) + "---------------");
-	int[] d = new int [4000000];
-	int[] c = new int [d.length];
+	//int[] d = new int [4000000];
+	//int[] c = new int [d.length];
 
-	for(int i = 0; i < d.length; i++){
-	d[i]= (int)(Math.random()* Integer.MAX_VALUE);
-	c[i]= d[i];
-	}
-        long startTime = System.currentTimeMillis();
-	quickSortOld(d); //or even your old quicksort!!!
-	long endTime = System.currentTimeMillis();
-	Arrays.sort(c);
+	//for(int i = 0; i < d.length; i++){
+	    //d[i]= (int)((Math.random()* Integer.MAX_VALUE) -  (Math.random() * Integer.MAX_VALUE));
+	    //c[i]= d[i];
+	//}
+        //long startTime = System.currentTimeMillis();
+	//quickSort(d); //or even your old quicksort!!!
 	
-	long totalTime = endTime - startTime;
-	System.out.println("Done: Sorted="+Arrays.equals(d,c));
-	System.out.println(totalTime / 1000.0);
+	//long endTime = System.currentTimeMillis();
+	//Arrays.sort(c);
+	
+	//long totalTime = endTime - startTime;
+	//System.out.println("Done: Sorted="+Arrays.equals(d,c));
+	//System.out.println(totalTime / 1000.0);
 
 
 	//	System.out.println(partitionOld(data,0,data.length - 1));
