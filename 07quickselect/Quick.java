@@ -198,26 +198,31 @@ public class Quick{
 
 
     public static void main(String[]args){
-	int [] data = {2,1,4324,-1234,7,295,3,7,7,55,305838554,2030,-19394,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,0,293940,105,15,39230,9420304,-103399,343};
+	//	int [] data = {2,1,4324,-1234,7,295,3,7,7,55,305838554,2030,-19394,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,0,293940,105,15,39230,9420304,-103399,343};
 	//System.out.println(data.length - 10);
-	System.out.println(Quick.quickselectOld(data,data.length -10) + "---------------");
-	System.out.println(Quick.quickselect(data,data.length -10) + "---------------");
-	//int[] d = new int [40000];
-	//int[] c = new int [d.length];
+	//System.out.println(Quick.quickselectOld(data,data.length -10) + "---------------");
+	//	System.out.println(Quick.quickselect(data,data.length -10) + "---------------");
+	int[] d = new int [4000000];
+	int[] c = new int [d.length];
 
-	//for(int i = 0; i < d.length; i++){
-	//d[i]= (int)(Math.random()* Integer.MAX_VALUE);
-	//c[i]= d[i];
-	//}
-	//quickSort(d); //or even your old quicksort!!!
-	//Arrays.sort(c);
-	//System.out.println("Done: Sorted="+Arrays.equals(d,c));
+	for(int i = 0; i < d.length; i++){
+	d[i]= (int)(Math.random()* Integer.MAX_VALUE);
+	c[i]= d[i];
+	}
+        long startTime = System.currentTimeMillis();
+	quickSortOld(d); //or even your old quicksort!!!
+	long endTime = System.currentTimeMillis();
+	Arrays.sort(c);
+	
+	long totalTime = endTime - startTime;
+	System.out.println("Done: Sorted="+Arrays.equals(d,c));
+	System.out.println(totalTime / 1000.0);
 
 
-	//System.out.println(partitionOld(data,0,data.length - 1));
-	//Quick.quickSort(data);
-	//int [] f = Quick.partition(data,data.length -4, data.length - 1);
-	//System.out.println(f[0]);
+	//	System.out.println(partitionOld(data,0,data.length - 1));
+    //	Quick.quickSort(data);
+    //int [] f = Quick.partition(data,data.length -4, data.length - 1);
+    //System.out.println(f[0]);
 	//System.out.println(f[1]);
 	//System.out.println(data[f[1]]);
 	//print(data);
