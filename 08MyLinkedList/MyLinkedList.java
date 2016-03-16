@@ -56,6 +56,20 @@ public class MyLinkedList{
 	return store.getValue();
     }
 
+
+    public int set(int index, int newValue){
+	int i = 0;
+	LNode store = start;
+	while(i < index){
+	    store = store.getNext();
+	    i++;
+	}
+	int ret = store.getValue(); 
+	store.setValue(newValue);
+	return ret;
+	
+    }
+
     
 
 	
@@ -96,8 +110,8 @@ public class MyLinkedList{
 	k.add(-2342);
 	k.add(0);
 	k.add(15);
+	System.out.println(k.set(5, 293994));
 	System.out.println(k);
-	System.out.println(k.get(2));
     }
 
     
