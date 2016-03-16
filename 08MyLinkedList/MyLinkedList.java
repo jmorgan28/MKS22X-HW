@@ -70,6 +70,17 @@ public class MyLinkedList{
 	
     }
 
+
+    public int indexOf(int value){
+	int i = 0;
+	LNode store = start;
+	while(store.getValue() != value){
+	    store = store.getNext();
+	    i ++;
+	}
+	return i;
+    }
+
     
 
 	
@@ -110,8 +121,8 @@ public class MyLinkedList{
 	k.add(-2342);
 	k.add(0);
 	k.add(15);
-	System.out.println(k.set(5, 293994));
 	System.out.println(k);
+	System.out.println(k.indexOf(0));
     }
 
     
