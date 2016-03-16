@@ -2,26 +2,33 @@ public class MyLinkedList{
     private LNode start;
     private int size;
 
-    //constructor
+    public MyLinkedList(){
+	start = new LNode(0);
+	}
+	
 
     public boolean add(int value){
+	LNode k = new LNode(value);
 	LNode store = start;
 	while(store.getNext() != null){
 	    store = start.getNext();
+	    System.out.println("bye");
 	}
-	store.getNext().setValue(value);
+	store.setNext(k);
 	return true;
     }
 
     public String toString(){
-	String s = "[";
+	String s = "[ ";
 	LNode store = start;
          while(store.getNext() != null){
-	     s += start.getNext().getValue();
+	     s += start.getValue();
 	     s += ", ";
+	     store = start.getNext();
+	     System.out.println("hello");
 	}
-	s += store.getNext().getValue();
-	s += "]";
+	s += store.getValue();
+	s += " ]";
 	return s;
     }
 
@@ -35,6 +42,7 @@ public class MyLinkedList{
 	
 	public LNode(int numb){
 	    value = numb;
+	    //next = new LNode(0);
 	}
 
 	public int getValue(){
@@ -53,6 +61,15 @@ public class MyLinkedList{
 	    next = node;
 	}
     }
+
+    public static void main(String[]args){
+	MyLinkedList k = new MyLinkedList();
+	k.add(5);
+	k.add(7);
+	//System.out.println(k);
+    }
+
+    
 	    
 	    
 	    
