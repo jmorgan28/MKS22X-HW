@@ -81,6 +81,39 @@ public class MyLinkedList{
 	return i;
     }
 
+
+    public int remove(int index){
+	if(index == 0){
+	    int ret = start.getValue();
+	    start = start.getNext();
+	    size --;
+	    return ret;
+	}
+	if(index == size -1){
+	    LNode store = start;
+	    for(int i = 0; i < size -2; i ++){
+		store = store.getNext();
+	    }
+	    int ret = store.getNext().getValue();
+	    LNode no = null;
+	    store.setNext(no);
+	    size --;
+	    return ret;
+	}
+	else{
+	    LNode store = start;
+	    for(int i = 0; i < index -1; i++){
+		store = store.getNext();
+	    }
+	    int ret = store.getNext().getValue();
+	    store.setNext(store.getNext().getNext());
+	    size --;
+	    return ret;
+	}
+	    
+	    
+    }
+
     
 
 	
@@ -122,7 +155,10 @@ public class MyLinkedList{
 	k.add(0);
 	k.add(15);
 	System.out.println(k);
-	System.out.println(k.indexOf(0));
+        k.remove(3);
+	k.remove(3);
+        System.out.println(k);
+	System.out.println(k.size());
     }
 
     
