@@ -4,7 +4,7 @@ public class MyLinkedList{
 
     public MyLinkedList(){
 	start = null;
-	int size = -1;
+	size = 0;
 	}
 	
 
@@ -16,8 +16,8 @@ public class MyLinkedList{
 	LNode k = new LNode(value);
 	LNode store = start;
 	while(store.getNext() != null){
-	    store = start.getNext();
-	    System.out.println("bye");
+	    store = store.getNext();
+	    //System.out.println("bye");
 	}
 	store.setNext(k);
 	}
@@ -35,11 +35,18 @@ public class MyLinkedList{
 	     s += store.getValue();
 	     s += ", ";
 	     store = store.getNext();
-	     System.out.println(store.getValue());
+	     //System.out.println(store.getValue());
 	}
 	s += store.getValue();
 	s += " ]";
 	return s;
+    }
+
+    public int size(){
+	return size;
+    }
+
+    public int get(int index){
     }
 
     
@@ -80,7 +87,10 @@ public class MyLinkedList{
 	k.add(7);
 	k.add(9);
 	k.add(-2342);
+	k.add(0);
+	k.add(15);
 	System.out.println(k);
+	System.out.println(k.size());
     }
 
     
