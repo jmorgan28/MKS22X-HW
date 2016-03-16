@@ -47,6 +47,13 @@ public class MyLinkedList{
     }
 
     public int get(int index){
+	int i = 0;
+	LNode store = start;
+	while(i < index){
+	    store = store.getNext();
+	    i++;
+	}
+	return store.getValue();
     }
 
     
@@ -90,7 +97,7 @@ public class MyLinkedList{
 	k.add(0);
 	k.add(15);
 	System.out.println(k);
-	System.out.println(k.size());
+	System.out.println(k.get(2));
     }
 
     
