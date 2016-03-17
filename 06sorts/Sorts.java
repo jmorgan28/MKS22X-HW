@@ -24,6 +24,7 @@ public class Sorts{
        System.out.println(s);
 	   
    }
+    //moves back until in place
    public static void insertionSort(int[]data){
        int i = 1;
        //int [] new = int[] data.length;
@@ -48,7 +49,7 @@ public class Sorts{
       //same algorithm as the way you created your OrderedSuperArray
    }
 
-
+    // loops through finds smallest swaps with left
     public static void selectionSort(int [] data){
 	int q = 0;
 	int ctr = 0;
@@ -70,7 +71,7 @@ public class Sorts{
 	       printArray(data);}
 	q ++;}
     }
-
+    //go throgh and swap those not in order. then do it again
     public static void bubbleSort(int [] data){
 	int i = 0;
 	int swap = 1;
