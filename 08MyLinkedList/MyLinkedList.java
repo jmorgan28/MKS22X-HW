@@ -116,6 +116,11 @@ public class MyLinkedList{
 
     public boolean add(int index, int value){
 	if(index == 0){
+	    if(start == null){
+	    start = new LNode(value);
+	    size ++;
+	    return true;
+	}
 	    LNode zero = new LNode(value);
 	    zero.setNext(start);
 	    start = zero;
@@ -180,7 +185,7 @@ public class MyLinkedList{
     public static void main(String[]args){
 	MyLinkedList k = new MyLinkedList();
 	k.add(5);
-	k.add(7);
+	k.add(0,7);
 	k.add(9);
 	k.add(-2342);
 	k.add(0);

@@ -2,10 +2,10 @@ public class MyLinkedList{
     private LNode start;
     private int size;
 
-    public MyLinkedList(){
-	start = null;
-	size = 0;
-	}
+    // public MyLinkedList(){
+    //	start = null;
+    //	size = 0;
+    //	}
 	
 
     public boolean add(int value){
