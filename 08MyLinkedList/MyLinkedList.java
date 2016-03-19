@@ -1,6 +1,7 @@
 public class MyLinkedList{
     private LNode start;
     private int size;
+    private LNode end;
 
     // public MyLinkedList(){
     //	start = null;
@@ -11,15 +12,18 @@ public class MyLinkedList{
     public boolean add(int value){
 	if(start == null){
 	    start = new LNode(value);
+	    end = start;
 	}
 	else{    
 	LNode k = new LNode(value);
-	LNode store = start;
-	while(store.getNext() != null){
-	    store = store.getNext();
+	end.setNext(k);
+	end = end.getNext();
+	//LNode store = start;
+	//while(store.getNext() != null){
+	//  store = store.getNext();
 	    //System.out.println("bye");
-	}
-	store.setNext(k);
+	//}
+	//store.setNext(k);
 	}
 	size ++;
 	return true;
@@ -118,6 +122,7 @@ public class MyLinkedList{
 	if(index == 0){
 	    if(start == null){
 	    start = new LNode(value);
+	    end = start;
 	    size ++;
 	    return true;
 	}
@@ -128,14 +133,7 @@ public class MyLinkedList{
 	    return true;
 	}
 	if(index == size -1){
-	    LNode store = start;
-	    LNode part = new LNode(value);
-	    for(int i = 0; i < size - 1; i ++){
-		store = store.getNext();
-	    }
-	    store.setNext(part);
-	    size ++;
-	    return true;
+	    return add(value);
 	}
 	else{
 	    LNode store = start;
@@ -184,15 +182,19 @@ public class MyLinkedList{
 
     public static void main(String[]args){
 	MyLinkedList k = new MyLinkedList();
-	k.add(5);
 	k.add(0,7);
+	k.add(5);
+	//k.add(0,7);
 	k.add(9);
 	k.add(-2342);
 	k.add(0);
 	k.add(15);
 	System.out.println(k);
-        k.add(4,2924848);
-	k.add(5,48);
+	//System.out.println(k.get(2));
+        //k.add(4,2924848);
+	//k.add(5,48);
+	k.add(4,89);
+	k.remove(3);
         System.out.println(k);
 	System.out.println(k.size());
     }
