@@ -1,4 +1,5 @@
-public class MyLinkedList{
+import java.util.*;
+public class MyLinkedList<T>{
     private LNode start;
     private int size;
     private LNode end;
@@ -9,7 +10,7 @@ public class MyLinkedList{
     //	}
 	
 
-    public boolean add(int value){
+    public boolean add(T value){
 	if(start == null){
 	    start = new LNode(value);
 	    end = start;
@@ -50,7 +51,7 @@ public class MyLinkedList{
 	return size;
     }
 
-    public int get(int index){
+    public T get(int index){
 	int i = 0;
 	LNode store = start;
 	while(i < index){
@@ -61,7 +62,7 @@ public class MyLinkedList{
     }
 
 
-    public int set(int index, int newValue){
+    public T set(int index, T newValue){
 	int i = 0;
 	LNode store = start;
 	while(i < index){
@@ -75,7 +76,7 @@ public class MyLinkedList{
     }
 
 
-    public int indexOf(int value){
+    public T indexOf(int value){
 	int i = 0;
 	LNode store = start;
 	while(store.getValue() != value){
@@ -86,9 +87,9 @@ public class MyLinkedList{
     }
 
 
-    public int remove(int index){
+    public T remove(int index){
 	if(index == 0){
-	    int ret = start.getValue();
+	    T ret = start.getValue();
 	    start = start.getNext();
 	    size --;
 	    return ret;
@@ -98,7 +99,7 @@ public class MyLinkedList{
 	    for(int i = 0; i < size -2; i ++){
 		store = store.getNext();
 	    }
-	    int ret = store.getNext().getValue();
+	    T ret = store.getNext().getValue();
 	    LNode no = null;
 	    store.setNext(no);
 	    size --;
@@ -109,7 +110,7 @@ public class MyLinkedList{
 	    for(int i = 0; i < index -1; i++){
 		store = store.getNext();
 	    }
-	    int ret = store.getNext().getValue();
+	    int <t> = store.getNext().getValue();
 	    store.setNext(store.getNext().getNext());
 	    size --;
 	    return ret;
@@ -118,7 +119,7 @@ public class MyLinkedList{
 	    
     }
 
-    public boolean add(int index, int value){
+    public boolean add(int index, T value){
 	if(index == 0){
 	    if(start == null){
 	    start = new LNode(value);
