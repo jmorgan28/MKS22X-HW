@@ -150,7 +150,9 @@ public class MyLinkedList<T>{
     }
 
     
-
+    	public String name(){
+	 return "7,Morgan,Jackson";
+     }
 	
 	
 	
@@ -197,7 +199,7 @@ public class MyLinkedList<T>{
 	k.add(4,"just no");
 	k.remove(3);
 	System.out.println(k.indexOf("how"));
-	System.out.println(k);
+	System.out.println(k.name());
 	
 	System.out.println(k.size());
     }
