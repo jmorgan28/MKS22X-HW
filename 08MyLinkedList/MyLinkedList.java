@@ -204,9 +204,10 @@ public class MyLinkedList<T>{
         //k.add(4,2924848);
 	//k.add(5,48);
 	k.add(4,"just no");
-	k.remove(3);
+	k.remove(5);
 	System.out.println(k.indexOf("t"));
-	System.out.println(k.name());
+	System.out.println(k);
+	//System.out.println(k.name());
 	
 	System.out.println(k.size());
     }
