@@ -1,3 +1,4 @@
+
 import java.util.*;
 public class MyLinkedList<T>{
     private LNode start;
@@ -77,13 +78,17 @@ public class MyLinkedList<T>{
 
 
     public int indexOf(T value){
-	int i = 0;
+	int i = -1;
+	int k = 0;
 	LNode store = start;
-	while(!(store.getValue().equals(value))){
+	while(k < size && i == -1){
+	    if(value.equals(store.getValue())){
+		i = k;
+	    }
 	    store = store.getNext();
-	    i ++;
+	    k ++;
 	}
-	return i;
+        return i;
     }
 
 
@@ -99,6 +104,8 @@ public class MyLinkedList<T>{
 	    for(int i = 0; i < size -2; i ++){
 		store = store.getNext();
 	    }
+	    LNode newEnd = store;
+	    end = store;
 	    T ret = store.getNext().getValue();
 	    LNode no = null;
 	    store.setNext(no);
@@ -133,7 +140,7 @@ public class MyLinkedList<T>{
 	    size ++;
 	    return true;
 	}
-	if(index == size -1){
+	if(index == size){
 	    return add(value);
 	}
 	else{
@@ -198,7 +205,7 @@ public class MyLinkedList<T>{
 	//k.add(5,48);
 	k.add(4,"just no");
 	k.remove(3);
-	System.out.println(k.indexOf("how"));
+	System.out.println(k.indexOf("t"));
 	System.out.println(k.name());
 	
 	System.out.println(k.size());
