@@ -69,17 +69,17 @@ public class MyLinkedList<T>{
 	    store = store.getNext();
 	    i++;
 	}
-	int ret = store.getValue(); 
+	T ret = store.getValue(); 
 	store.setValue(newValue);
 	return ret;
 	
     }
 
 
-    public T indexOf(int value){
+    public int indexOf(T value){
 	int i = 0;
 	LNode store = start;
-	while(store.getValue() != value){
+	while(!(store.getValue().equals(value))){
 	    store = store.getNext();
 	    i ++;
 	}
@@ -110,7 +110,7 @@ public class MyLinkedList<T>{
 	    for(int i = 0; i < index -1; i++){
 		store = store.getNext();
 	    }
-	    int <t> = store.getNext().getValue();
+	    T ret = store.getNext().getValue();
 	    store.setNext(store.getNext().getNext());
 	    size --;
 	    return ret;
@@ -156,19 +156,19 @@ public class MyLinkedList<T>{
 	
 
     public class LNode{
-	private int value;
+	private T value;
 	private LNode next; 
 	
-	public LNode(int numb){
+	public LNode(T numb){
 	    value = numb;
 	    //next = new LNode(0);
 	}
 
-	public int getValue(){
+	public T getValue(){
 	    return value;
 	}
 
-	public void setValue(int val){
+	public void setValue(T val){
 	    value = val;
 	}
 	    
@@ -182,21 +182,23 @@ public class MyLinkedList<T>{
     }
 
     public static void main(String[]args){
-	MyLinkedList k = new MyLinkedList();
-	k.add(0,7);
-	k.add(5);
+	MyLinkedList<String> k = new MyLinkedList<String>();
+	k.add(0,"t");
+	k.add("up");
 	//k.add(0,7);
-	k.add(9);
-	k.add(-2342);
-	k.add(0);
-	k.add(15);
+	k.add("that");
+	k.add("who");
+	k.add("how");
+	k.add("never");
 	System.out.println(k);
 	//System.out.println(k.get(2));
         //k.add(4,2924848);
 	//k.add(5,48);
-	k.add(4,89);
+	k.add(4,"just no");
 	k.remove(3);
-        System.out.println(k);
+	System.out.println(k.indexOf("how"));
+	System.out.println(k);
+	
 	System.out.println(k.size());
     }
 
