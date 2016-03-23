@@ -53,6 +53,9 @@ public class MyLinkedList<T>{
     }
 
     public T get(int index){
+	if(index < 0 || index >= size){
+	    throw new IndexOutOfBoundsException();
+	}
 	int i = 0;
 	LNode store = start;
 	while(i < index){
@@ -64,6 +67,9 @@ public class MyLinkedList<T>{
 
 
     public T set(int index, T newValue){
+	if(index < 0 || index >= size){
+	    throw new IndexOutOfBoundsException();
+	}
 	int i = 0;
 	LNode store = start;
 	while(i < index){
@@ -93,6 +99,9 @@ public class MyLinkedList<T>{
 
 
     public T remove(int index){
+	if(index < 0 || index >= size){
+	    throw new IndexOutOfBoundsException();
+	}
 	if(index == 0){
 	    T ret = start.getValue();
 	    start = start.getNext();
@@ -127,6 +136,9 @@ public class MyLinkedList<T>{
     }
 
     public boolean add(int index, T value){
+	if(index < 0 || index > size){
+	    throw new IndexOutOfBoundsException();
+	}
 	if(index == 0){
 	    if(start == null){
 	    start = new LNode(value);
@@ -199,13 +211,17 @@ public class MyLinkedList<T>{
 	k.add("who");
 	k.add("how");
 	k.add("never");
-	System.out.println(k);
+	//System.out.println(k);
 	//System.out.println(k.get(2));
         //k.add(4,2924848);
 	//k.add(5,48);
 	k.add(4,"just no");
+	System.out.println(k);
 	k.remove(5);
-	System.out.println(k.indexOf("t"));
+	System.out.println(k);
+	k.add("last");
+	k.add("people");
+	System.out.println(k.indexOf("just no"));
 	System.out.println(k);
 	//System.out.println(k.name());
 	
