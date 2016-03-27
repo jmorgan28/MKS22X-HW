@@ -210,17 +210,21 @@ public class MyLinkedList<T> implements Iterable<T>{
 	    throw new UnsupportedOperationException();
 	}
 	public T next(){
-	    T store = current.getNext().getValue();
+	    if(! hasNext()){
+		throw new NoSuchElementException();
+	    }
+	    T store = current.getValue();
 	    current = current.getNext();
 	    return store;
 	}
 	public boolean hasNext(){
-	    return !(current.getNext() == null);
+	    return  current != null;
 	}
     }
 
     public static void main(String[]args){
 	MyLinkedList<String> k = new MyLinkedList<String>();
+	
 	k.add(0,"t");
 	k.add("up");
 	//k.add(0,7);
@@ -241,8 +245,9 @@ public class MyLinkedList<T> implements Iterable<T>{
 	System.out.println(k.indexOf("just no"));
 	System.out.println(k);
 	//System.out.println(k.name());
-	
 	System.out.println(k.size());
+        
+	
     }
 
     
