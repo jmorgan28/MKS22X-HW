@@ -1,11 +1,11 @@
 import java.util.*;
 public class MyStack<T>{
-    MyLinkedList Q = new MyLinkedList();
+    MyLinkedList<T> Q = new MyLinkedList<T>();
        /**
      * Adds the given item to the top of the stack.
      */
     public void push(T item){
-	Q.add(0);
+	Q.add(0,item);
     }
 
     /**
@@ -45,4 +45,17 @@ public class MyStack<T>{
     public boolean isEmpty(){
 	return size() == 0;
     }
+
+    public static void main(String[]args){
+	MyStack f = new MyStack();
+	
+	
+	f.push(6);
+	f.push(11);
+	System.out.println(f.size());
+	System.out.println(f.pop());
+    }
+	
+	    
+	
 }
