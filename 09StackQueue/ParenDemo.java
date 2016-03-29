@@ -2,9 +2,15 @@ public class ParenDemo{
     
     public static boolean isMatching(String s){
 	MyStack<Character> m = new MyStack<Character>();
-	for(int i = 0; i < s.length(); i ++){
+	for(int i = s.length() -1; i >= 0; i--){
 	    m.push(s.charAt(i));
 	}
+	if(s.charAt(i).equals('(')){
+	    if(m.peek.equals(')')){
+		
+  
+	
+	
 
 	return true;
 	
