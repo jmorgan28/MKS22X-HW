@@ -1,6 +1,6 @@
 import java.util.*;
 public class MyQueue<T>{
-    MyLinkedList Q = new MyLinkedList();
+    MyLinkedList<T> Q = new MyLinkedList<T>();
     /**
      * Adds the given item to the rear of the queue.
      */
@@ -46,4 +46,17 @@ public class MyQueue<T>{
     boolean isEmpty(){
 	return Q.size() == 0;
     }
+
+    public static void main(String[]args){
+	MyQueue h = new MyQueue();
+	
+	System.out.println(h.isEmpty());
+	h.enqueue(4);
+	System.out.println(h.size());
+	h.enqueue(11);
+	System.out.println(h.peek());
+	System.out.println(h.dequeue());
+	System.out.println(h.size());
+    }
+	
 }
