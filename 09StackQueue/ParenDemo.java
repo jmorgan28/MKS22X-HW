@@ -18,7 +18,7 @@ public class ParenDemo{
 		m.push(s.charAt(i));
 	    }
 	}
-	for(int i = s.length() -1; i > 0; i--){
+	for(int i = s.length() -1; i >= 0; i--){
 	    if(s.charAt(i) == (')')){
 	    f.push(s.charAt(i));
 		}
@@ -37,7 +37,8 @@ public class ParenDemo{
 	    return false;
 	}
 	int k = 0;
-	while(k < m.size()){
+	int rem = m.size();
+	while(k < rem){
 	    if(m.peek() == '(' && f.peek() != ')'){
 		return false;
 	    }
