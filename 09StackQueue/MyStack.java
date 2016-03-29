@@ -1,9 +1,14 @@
 import java.util.*;
 public class MyStack<T>{
-    MyLinkedList<T> Q = new MyLinkedList<T>();
+    MyLinkedList<T> Q;
        /**
      * Adds the given item to the top of the stack.
      */
+
+    public MyStack(){
+	Q = new MyLinkedList<T>();
+    }
+	
     public void push(T item){
 	Q.add(0,item);
     }

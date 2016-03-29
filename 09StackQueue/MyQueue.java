@@ -1,6 +1,14 @@
 import java.util.*;
 public class MyQueue<T>{
-    MyLinkedList<T> Q = new MyLinkedList<T>();
+    MyLinkedList<T> Q;
+
+
+    public MyQueue(){
+	Q = new MyLinkedList<T>();
+    }
+
+
+
     /**
      * Adds the given item to the rear of the queue.
      */
