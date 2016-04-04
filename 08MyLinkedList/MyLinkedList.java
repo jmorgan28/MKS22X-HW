@@ -10,7 +10,7 @@ public class MyLinkedList<T> implements Iterable<T>{
     //	}
 
     public Iterator<T> iterator(){
-	return new y();
+	return new x();
     }
 
     public boolean add(T value){
@@ -108,8 +108,10 @@ public class MyLinkedList<T> implements Iterable<T>{
 	}
 	if(index == 0){
 	    T ret = start.getValue();
-	    start = start.getNext();
-	    //start.setPrevious(null);
+	    if(size > 1){
+	    start.getNext().setPrevious(null);
+	    start = start.getNext();}
+	    else{start = null;}
 	    size --;
 	    return ret;
 	}
@@ -280,7 +282,7 @@ public class MyLinkedList<T> implements Iterable<T>{
 	//k.add(5,48);
 	k.add(4,"just no");
 	System.out.println(k);
-	k.remove(5);
+	k.remove(6);
 	System.out.println(k);
 	k.add("last");
 	System.out.println(k);
