@@ -10,7 +10,7 @@ public class MyLinkedList<T> implements Iterable<T>{
     //	}
 
     public Iterator<T> iterator(){
-	return new x();
+	return new y();
     }
 
     public boolean add(T value){
@@ -20,8 +20,10 @@ public class MyLinkedList<T> implements Iterable<T>{
 	}
 	else{    
 	LNode k = new LNode(value);
+	LNode p = end;
 	end.setNext(k);
 	end = end.getNext();
+	end.setPrevious(p);
 	//LNode store = start;
 	//while(store.getNext() != null){
 	//  store = store.getNext();
@@ -107,6 +109,7 @@ public class MyLinkedList<T> implements Iterable<T>{
 	if(index == 0){
 	    T ret = start.getValue();
 	    start = start.getNext();
+	    //start.setPrevious(null);
 	    size --;
 	    return ret;
 	}
@@ -128,8 +131,11 @@ public class MyLinkedList<T> implements Iterable<T>{
 	    for(int i = 0; i < index -1; i++){
 		store = store.getNext();
 	    }
+	    LNode rem = store;
 	    T ret = store.getNext().getValue();
 	    store.setNext(store.getNext().getNext());
+	    store = store.getNext();
+	    store.setPrevious(rem);
 	    size --;
 	    return ret;
 	}
@@ -150,6 +156,7 @@ public class MyLinkedList<T> implements Iterable<T>{
 	}
 	    LNode zero = new LNode(value);
 	    zero.setNext(start);
+	    zero.getNext().setPrevious(zero);
 	    start = zero;
 	    size ++;
 	    return true;
@@ -164,7 +171,9 @@ public class MyLinkedList<T> implements Iterable<T>{
 		store = store.getNext();
 	    }
 	    part.setNext(store.getNext());
+	    part.setPrevious(store);
 	    store.setNext(part);
+	    part.getNext().setPrevious(part);
 	    size ++;
 	    return true;
 	}
@@ -180,7 +189,7 @@ public class MyLinkedList<T> implements Iterable<T>{
 
     public class LNode{
 	private T value;
-	private LNode next; 
+	private LNode next, previous; 
 	
 	public LNode(T numb){
 	    value = numb;
@@ -191,12 +200,20 @@ public class MyLinkedList<T> implements Iterable<T>{
 	    return value;
 	}
 
+	public LNode getPrevious(){
+	    return previous;
+	}
+
 	public void setValue(T val){
 	    value = val;
 	}
 	    
 	public LNode getNext(){
 	    return next;
+	}
+
+	public void setPrevious(LNode l){
+	    previous = l;
 	}
 	
 	public void setNext(LNode node){
@@ -222,16 +239,41 @@ public class MyLinkedList<T> implements Iterable<T>{
 	}
     }
 
+
+    public class y implements Iterator<T>{
+	LNode current = end;
+	public void remove(){
+	    throw new UnsupportedOperationException();
+	}
+	public T next(){
+	    if(! hasNext()){
+		throw new NoSuchElementException();
+	    }
+	    T store = current.getValue();
+	    current = current.getPrevious();
+	    return store;
+	}
+	public boolean hasNext(){
+	    return  current != null;
+	}
+    }
+
     public static void main(String[]args){
 	MyLinkedList<String> k = new MyLinkedList<String>();
 	
 	k.add(0,"t");
+	System.out.println(k);
 	k.add("up");
+	System.out.println(k);
 	//k.add(0,7);
 	k.add("that");
+	System.out.println(k);
 	k.add("who");
+	System.out.println(k);
 	k.add("how");
+	System.out.println(k);
 	k.add("never");
+	System.out.println(k);
 	//System.out.println(k);
 	//System.out.println(k.get(2));
         //k.add(4,2924848);
@@ -241,11 +283,16 @@ public class MyLinkedList<T> implements Iterable<T>{
 	k.remove(5);
 	System.out.println(k);
 	k.add("last");
+	System.out.println(k);
 	k.add("people");
-	System.out.println(k.indexOf("just no"));
 	System.out.println(k);
 	//System.out.println(k.name());
-	System.out.println(k.size());
+	//System.out.println(k.size());
+	System.out.println("testttttttttttttttttttt");
+	for(String x: k){
+	    System.out.print(x + ",");
+	}
+	
         
 	
     }
