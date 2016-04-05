@@ -84,6 +84,22 @@ public class MyDeque<T>{
 	return ret;
     }
 
+
+
+    public T getFirst(){
+	if(size == 0){
+	    throw new NoSuchElementException();
+	}
+	return data[start];
+    }
+
+    public T getLast(){
+	if(size == 0){
+	    throw new NoSuchElementException();
+	}
+	return data[end];
+    }
+
     public void print(){
 	System.out.print("[");
 	for(int i = 0; i < data.length; i ++){
@@ -92,9 +108,12 @@ public class MyDeque<T>{
 	System.out.print("]");			 
     }
 
+    public String name(){
+	 return "7,Morgan,Jackson";
+     }
     
 
-    //public void addLast(T value){
+   
 	
     public static void main(String[]args){
 	MyDeque<Integer> d = new MyDeque<Integer>();
@@ -102,12 +121,13 @@ public class MyDeque<T>{
 	d.addLast(4);
 	d.addFirst(5);
 	d.addLast(6);
-	System.out.println(d.removeLast());
+	System.out.println(d.getLast());
 	d.addLast(7);
 	d.addLast(9);
 	d.addFirst(10);
 	d.addLast(11);
 	d.addLast(12);
+	System.out.println(d.getFirst());
 	d.addLast(13);
 	//d.addLast(14);
 	//d.addLast(15);
