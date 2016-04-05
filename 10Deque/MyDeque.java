@@ -10,12 +10,14 @@ public class MyDeque<T>{
 
     private void resize(){
 	T[] temp = (T[])new Object[data.length * 2];
+	int k = 0;
 	for(int i = 0; i < data.length; i ++){
 	    if(start + i < data.length){
 	    temp[i +1] = data[start + i];
 	    }
 	    else{
-		temp[i + 1] = data[start + i -start];
+		temp[i + 1] = data[k];
+		k ++;
 	    }
 		
 	}
@@ -41,6 +43,24 @@ public class MyDeque<T>{
 	size ++;
     }
 
+
+    public void addLast(T value){
+	if(size == 0){
+	    start = 4;
+	    end = 4;}
+	else{
+	    if(end + 1 == start){
+		resize();
+	}
+	    if(end  == data.length -1 && start > 0){
+	    end = 0;
+	    }else{
+	    end ++;}}
+    
+	data[end] = value;
+	size ++;
+    }
+
     public void print(){
 	System.out.print("[");
 	for(int i = 0; i < data.length; i ++){
@@ -55,17 +75,18 @@ public class MyDeque<T>{
 	
     public static void main(String[]args){
 	MyDeque<Integer> d = new MyDeque<Integer>();
-	d.addFirst(3);
-	d.addFirst(4);
+	d.addLast(3);
+	d.addLast(4);
 	d.addFirst(5);
-	d.addFirst(6);
-	d.addFirst(7);
-	d.addFirst(9);
+	d.addLast(6);
+	d.addLast(7);
+	d.addLast(9);
 	d.addFirst(10);
-	d.addFirst(11);
-	d.addFirst(12);
-	d.addFirst(13);
-	d.addFirst(14);
+	d.addLast(11);
+	d.addLast(12);
+	d.addLast(13);
+	d.addLast(14);
+	//d.addLast(15);
 	d.print();
     }
 	
