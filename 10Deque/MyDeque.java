@@ -5,11 +5,11 @@ public class MyDeque<T>{
     private int end;
     private int size;
 
-    public MyDeque(){ 
+    @SuppressWarnings("unchecked") public MyDeque(){ 
        data = (T[]) new Object[10];
     }
 
-    private void resize(){
+    @SuppressWarnings("unchecked") private void resize(){
 	T[] temp = (T[])new Object[data.length * 2];
 	int k = 0;
 	for(int i = 0; i < data.length; i ++){
