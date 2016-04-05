@@ -1,3 +1,4 @@
+import java.util.*;
 public class MyDeque<T>{
     T[] data;
     private int start;
@@ -61,6 +62,28 @@ public class MyDeque<T>{
 	size ++;
     }
 
+    public T removeFirst(){
+	if(size == 0){
+	    throw new NoSuchElementException();
+	}
+	T ret = data[start];
+	data[start] = null;
+	start ++;
+	size --;
+	return ret;
+    }
+
+    public T removeLast(){
+	if(size == 0){
+	    throw new NoSuchElementException();
+	}
+	T ret = data[end];
+	data[end] = null;
+	end --;
+	size --;
+	return ret;
+    }
+
     public void print(){
 	System.out.print("[");
 	for(int i = 0; i < data.length; i ++){
@@ -79,13 +102,14 @@ public class MyDeque<T>{
 	d.addLast(4);
 	d.addFirst(5);
 	d.addLast(6);
+	System.out.println(d.removeLast());
 	d.addLast(7);
 	d.addLast(9);
 	d.addFirst(10);
 	d.addLast(11);
 	d.addLast(12);
 	d.addLast(13);
-	d.addLast(14);
+	//d.addLast(14);
 	//d.addLast(15);
 	d.print();
     }
