@@ -32,7 +32,7 @@ public class MyDeque<T>{
 	    start = 0;
 	    end = 0;}
 	else{
-	    if(start - 1 == end){
+	    if(start - 1 == end || (start == 0 && end == data.length -1) ){
 		resize();
 	}
 	    if(start == 0 && end < data.length -1){
@@ -50,7 +50,7 @@ public class MyDeque<T>{
 	    start = 0;
 	    end = 0;}
 	else{
-	    if(end + 1 == start){
+	    if(end + 1 == start || (end == data.length -1 && start == 0) ){
 		resize();
 	}
 	    if(end  == data.length -1 && start > 0){
@@ -92,6 +92,10 @@ public class MyDeque<T>{
 	}
 	size --;
 	return ret;
+    }
+
+    public int size(){
+	return size;
     }
 
 
