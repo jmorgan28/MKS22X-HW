@@ -125,6 +125,10 @@ public class MyDeque<T>{
     public String name(){
 	 return "7,Morgan,Jackson";
      }
+
+    public boolean isEmpty(){
+	return size == 0;
+    }
     
 
    
