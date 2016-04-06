@@ -6,7 +6,7 @@ public class MyDeque<T>{
     private int size;
 
     @SuppressWarnings("unchecked") public MyDeque(){ 
-       data = (T[]) new Object[10];
+       data = (T[]) new Object[16];
     }
 
     @SuppressWarnings("unchecked") private void resize(){
@@ -14,23 +14,23 @@ public class MyDeque<T>{
 	int k = 0;
 	for(int i = 0; i < data.length; i ++){
 	    if(start + i < data.length){
-	    temp[i +1] = data[start + i];
+	    temp[i] = data[start + i];
 	    }
 	    else{
-		temp[i + 1] = data[k];
+		temp[i] = data[k];
 		k ++;
 	    }
 		
 	}
 	data = temp;
-	start = 1;
+	start = 0;
 	end = start + size -1;
     }
 
     public void addFirst(T value){
 	if(size == 0){
-	    start = 4;
-	    end = 4;}
+	    start = 0;
+	    end = 0;}
 	else{
 	    if(start - 1 == end){
 		resize();
@@ -47,8 +47,8 @@ public class MyDeque<T>{
 
     public void addLast(T value){
 	if(size == 0){
-	    start = 4;
-	    end = 4;}
+	    start = 0;
+	    end = 0;}
 	else{
 	    if(end + 1 == start){
 		resize();
@@ -68,7 +68,12 @@ public class MyDeque<T>{
 	}
 	T ret = data[start];
 	data[start] = null;
+	if(start < data.length -1){
 	start ++;
+	}
+	else{
+	    start = 0;
+	}
 	size --;
 	return ret;
     }
@@ -79,7 +84,12 @@ public class MyDeque<T>{
 	}
 	T ret = data[end];
 	data[end] = null;
+	if(end > 0){
 	end --;
+	}
+	else{
+	    end = data.length -1;
+	}
 	size --;
 	return ret;
     }
@@ -129,8 +139,9 @@ public class MyDeque<T>{
 	d.addLast(12);
 	System.out.println(d.getFirst());
 	d.addLast(13);
-	//d.addLast(14);
-	//d.addLast(15);
+	d.addLast(14);
+	d.addLast(15);
+	d.addFirst(17);
 	d.print();
     }
 	
