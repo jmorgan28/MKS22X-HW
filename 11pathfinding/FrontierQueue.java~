@@ -5,8 +5,6 @@ public class FrontierQueue<T> implements Frontier<T>{
 
     /***You can extend another class OR wrap around it***/
 
-    
-
 
 }
 
