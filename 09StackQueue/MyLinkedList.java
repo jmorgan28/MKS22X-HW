@@ -1,166 +1,307 @@
 import java.util.*;
 public class MyLinkedList<T> implements Iterable<T>{
-    private class LNode{
-	private T value;
-	private LNode next;
-	public LNode(T v){
-	    value = v;
-	}
-	public T getValue(){
-	    return value;
-	}
-	public LNode getNext(){
-	    return next;
-	}
-	public T setValue(T v){
-	    T old = value;
-	    value = v;
-	    return old;
-	}
-	public void setNext(LNode n){
-	    next = n;
-	}
-	public String toString(){
-	    return value.toString();
-	}
-    }
+    private LNode start;
+    private int size;
+    private LNode end;
 
-    LNode head;
-    LNode tail;
-    int size;
-    
+    // public MyLinkedList(){
+    //	start = null;
+    //	size = 0;
+    //	}
+
     public Iterator<T> iterator(){
-	//This uses an anonymous class! You don't need to know this.
-	return new Iterator<T>()
-	{
-	    private LNode current = head;
+	return new x();
+    }
 
-	    public boolean hasNext(){
-		return current != null;
-	    }
-	    public T next(){
-		if(!hasNext()){
-		    throw new NoSuchElementException();
-		}
-		T value = current.getValue();
-		current = current.getNext();
-		return value;
-	    }
-	    public void remove(){
-		throw new UnsupportedOperationException();
-	    }
-	};
-    } 
-    public String toString(){
-	String ans = "[";
-	LNode p = head;
-	while(p!=null){
-	    ans += p.getValue();
-	    if(p.getNext()!=null){
-		ans += ", ";
-	    }
-	    p = p.getNext();
-	}
-	return ans+"]";
-    }
-    public String toString(boolean b){
-	return toString()+" head: "+head +", tail: "+tail;
-    }
-    private LNode getNth(int index){
-	//check bounds before calling this method!
-	LNode temp = head;
-	while(index > 0){
-	    temp = temp.getNext();
-	    index --;
-	}
-	return temp;
-    }
     public boolean add(T value){
-	if(head == null){
-	    head = new LNode(value);
-	    tail = head;
-	}else{
-	    tail.setNext(new LNode(value));
-	    tail = tail.getNext();
+	if(start == null){
+	    start = new LNode(value);
+	    end = start;
 	}
-	size++;
+	else{    
+	LNode k = new LNode(value);
+	LNode p = end;
+	end.setNext(k);
+	end = end.getNext();
+	end.setPrevious(p);
+	//LNode store = start;
+	//while(store.getNext() != null){
+	//  store = store.getNext();
+	    //System.out.println("bye");
+	//}
+	//store.setNext(k);
+	}
+	size ++;
 	return true;
     }
-    public T remove(int index){
-	if(index < 0 || index >= size()){
-	    throw new IndexOutOfBoundsException("Index: "+index+", Size: "+size());
+
+    public String toString(){
+	if(start == null){
+	    return "[ ]";
 	}
-	LNode temp;
-	if(index == 0){
-	    temp = head;
-	    head = head.getNext();
-	    size--;
-	    if(head == null){
-		tail = null;
-	    }
-	    return temp.getValue();
-	}else{
-	    LNode p = getNth(index-1);
-	    temp = p.getNext();
-	    if(tail == temp){
-		tail = p;
-	    }
-	    p.setNext(p.getNext().getNext());
-	    size --;
-	    return temp.getValue();
+	String s = "[ ";
+	LNode store = start;
+         while(store.getNext() != null){
+	     s += store.getValue();
+	     s += ", ";
+	     store = store.getNext();
+	     //System.out.println(store.getValue());
 	}
+	s += store.getValue();
+	s += " ]";
+	return s;
     }
-    public boolean add(int index, T value){
-	if(index < 0 || index > size()){
-	    throw new IndexOutOfBoundsException("Index "+index+", Size: "+size());
-	}
-	LNode temp = new LNode(value); 
-	if(index == 0){
-	    temp.setNext(head);
-	    head = temp;
-	    if(size==0){
-		tail = head;
-	    }
-	}else{ 
-	    LNode p = getNth(index-1);
-	    temp.setNext(p.getNext());
-	    p.setNext(temp);
-	    if(tail.getNext() != null){
-		tail=tail.getNext();
-	    }
-	}
-	size++;
-	return true;
-    }
-    
+
     public int size(){
 	return size;
     }
-    
+
     public T get(int index){
-	if(index < 0 || index >= size()){
-	    throw new IndexOutOfBoundsException("Index "+index+", Size: "+size());
+	if(index < 0 || index >= size){
+	    throw new IndexOutOfBoundsException();
 	}
-	return getNth(index).getValue();
+	int i = 0;
+	LNode store = start;
+	while(i < index){
+	    store = store.getNext();
+	    i++;
+	}
+	return store.getValue();
     }
+
 
     public T set(int index, T newValue){
-	if(index < 0 || index >= size()){
-	    throw new IndexOutOfBoundsException("Index "+index+", Size: "+size());
+	if(index < 0 || index >= size){
+	    throw new IndexOutOfBoundsException();
 	}
-	return getNth(index).setValue(newValue);
+	int i = 0;
+	LNode store = start;
+	while(i < index){
+	    store = store.getNext();
+	    i++;
+	}
+	T ret = store.getValue(); 
+	store.setValue(newValue);
+	return ret;
+	
     }
 
-    public int indexOf(T target){
-	LNode temp = head;
-	int index = 0;
-	while(temp != null){
-	    if(temp.getValue().equals(target)){
-		return index;
+
+    public int indexOf(T value){
+	int i = -1;
+	int k = 0;
+	LNode store = start;
+	while(k < size && i == -1){
+	    if(value.equals(store.getValue())){
+		i = k;
 	    }
-	    index++;
-	    temp = temp.getNext();
+	    store = store.getNext();
+	    k ++;
 	}
-	return -1;
+        return i;
     }
+
+
+    public T remove(int index){
+	if(index < 0 || index >= size){
+	    throw new IndexOutOfBoundsException();
+	}
+	if(index == 0){
+	    T ret = start.getValue();
+	    if(size > 1){
+	    start.getNext().setPrevious(null);
+	    start = start.getNext();}
+	    else{start = null;}
+	    size --;
+	    return ret;
+	}
+	if(index == size -1){
+	    LNode store = start;
+	    for(int i = 0; i < size -2; i ++){
+		store = store.getNext();
+	    }
+	    LNode newEnd = store;
+	    end = store;
+	    T ret = store.getNext().getValue();
+	    LNode no = null;
+	    store.setNext(no);
+	    size --;
+	    return ret;
+	}
+	else{
+	    LNode store = start;
+	    for(int i = 0; i < index -1; i++){
+		store = store.getNext();
+	    }
+	    LNode rem = store;
+	    T ret = store.getNext().getValue();
+	    store.setNext(store.getNext().getNext());
+	    store = store.getNext();
+	    store.setPrevious(rem);
+	    size --;
+	    return ret;
+	}
+	    
+	    
+    }
+
+    public boolean add(int index, T value){
+	if(index < 0 || index > size){
+	    throw new IndexOutOfBoundsException();
+	}
+	if(index == 0){
+	    if(start == null){
+	    start = new LNode(value);
+	    end = start;
+	    size ++;
+	    return true;
+	}
+	    LNode zero = new LNode(value);
+	    zero.setNext(start);
+	    zero.getNext().setPrevious(zero);
+	    start = zero;
+	    size ++;
+	    return true;
+	}
+	if(index == size){
+	    return add(value);
+	}
+	else{
+	    LNode store = start;
+	    LNode part = new LNode(value);
+	    for(int i = 0; i < index -1; i ++){
+		store = store.getNext();
+	    }
+	    part.setNext(store.getNext());
+	    part.setPrevious(store);
+	    store.setNext(part);
+	    part.getNext().setPrevious(part);
+	    size ++;
+	    return true;
+	}
+    }
+
+    
+    	public String name(){
+	 return "7,Morgan,Jackson";
+     }
+	
+	
+	
+
+    public class LNode{
+	private T value;
+	private LNode next, previous; 
+	
+	public LNode(T numb){
+	    value = numb;
+	    //next = new LNode(0);
+	}
+
+	public T getValue(){
+	    return value;
+	}
+
+	public LNode getPrevious(){
+	    return previous;
+	}
+
+	public void setValue(T val){
+	    value = val;
+	}
+	    
+	public LNode getNext(){
+	    return next;
+	}
+
+	public void setPrevious(LNode l){
+	    previous = l;
+	}
+	
+	public void setNext(LNode node){
+	    next = node;
+	}
+    }
+
+    public class x implements Iterator<T>{
+	LNode current = start;
+	public void remove(){
+	    throw new UnsupportedOperationException();
+	}
+	public T next(){
+	    if(! hasNext()){
+		throw new NoSuchElementException();
+	    }
+	    T store = current.getValue();
+	    current = current.getNext();
+	    return store;
+	}
+	public boolean hasNext(){
+	    return  current != null;
+	}
+    }
+
+
+    public class y implements Iterator<T>{
+	LNode current = end;
+	public void remove(){
+	    throw new UnsupportedOperationException();
+	}
+	public T next(){
+	    if(! hasNext()){
+		throw new NoSuchElementException();
+	    }
+	    T store = current.getValue();
+	    current = current.getPrevious();
+	    return store;
+	}
+	public boolean hasNext(){
+	    return  current != null;
+	}
+    }
+
+    public static void main(String[]args){
+	MyLinkedList<String> k = new MyLinkedList<String>();
+	
+	k.add(0,"t");
+	System.out.println(k);
+	k.add("up");
+	System.out.println(k);
+	//k.add(0,7);
+	k.add("that");
+	System.out.println(k);
+	k.add("who");
+	System.out.println(k);
+	k.add("how");
+	System.out.println(k);
+	k.add("never");
+	System.out.println(k);
+	//System.out.println(k);
+	//System.out.println(k.get(2));
+        //k.add(4,2924848);
+	//k.add(5,48);
+	k.add(4,"just no");
+	System.out.println(k);
+	k.remove(6);
+	System.out.println(k);
+	k.add("last");
+	System.out.println(k);
+	k.add("people");
+	System.out.println(k);
+	//System.out.println(k.name());
+	//System.out.println(k.size());
+	System.out.println("testttttttttttttttttttt");
+	for(String x: k){
+	    System.out.print(x + ",");
+	}
+	
+        
+	
+    }
+
+    
+	    
+	    
+	    
+
 }
