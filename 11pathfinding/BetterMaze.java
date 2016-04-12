@@ -30,6 +30,7 @@ public class BetterMaze{
     private int      startRow,startCol;
     private Frontier<Node> placesToGo;
     private boolean  animate;//default to false
+    private Node store;
 
    /**return a COPY of solution.
      *This should be : [x1,y1,x2,y2,x3,y3...]
@@ -76,6 +77,37 @@ public class BetterMaze{
 		placesToGo.add(new Node(n.getRow(), n.getCol() + 1, n));
 		maze[n.getRow()][n.getCol() + 1] = '.';
 	    }
+	    if(maze[n.getRow() - 1][n.getCol()] == (' ')){
+		placesToGo.add(new Node(n.getRow() - 1, n.getCol(), n));
+		maze[n.getRow() - 1][n.getCol()] = '.';
+	    }
+	    if(maze[n.getRow()][n.getCol() -1] == (' ')){
+		placesToGo.add(new Node(n.getRow(), n.getCol() -1, n));
+		store = new Node(n.getRow() + 1, n.getCol(), n);
+		maze[n.getRow()][n.getCol() - 1] = '.';
+	    }
+	    
+	    if(maze[n.getRow() + 1][n.getCol()] == ('E')){
+		store = new Node(n.getRow() + 1, n.getCol(), n);
+		maze[n.getRow() + 1][n.getCol()] = '.';
+		return true; 
+	    }
+	    if(maze[n.getRow()][n.getCol() + 1] == ('E')){
+		store = new Node(n.getRow(), n.getCol() + 1, n);
+		maze[n.getRow()][n.getCol() + 1] = '.';
+		return true; 
+	    }
+	    if(maze[n.getRow() - 1][n.getCol()] == ('E')){
+		store = new Node(n.getRow() - 1, n.getCol(), n);
+		maze[n.getRow() - 1][n.getCol()] = '.';
+		return true; 
+	    }
+	    if(maze[n.getRow()][n.getCol() -1] == ('E')){
+		store = new Node(n.getRow(), n.getCol() - 1, n);
+		maze[n.getRow()][n.getCol() - 1] = '.';
+		return true; 
+	    }	    
+
 
 	}
 		
