@@ -3,8 +3,25 @@ import java.io.*;
 
 public class BetterMaze{
     private class Node{
-	int location;
+	int x,y;
 	Node previous;
+
+	public Node(int xx, int yy, Node prev){
+	    x = xx;
+	    y = yy;
+	    previous = prev;
+	}
+
+	public Node getPrev(){
+	    return previous;
+	}
+
+	public int getX(){
+	    return x;
+	}
+	public int getY(){
+	    return y;
+	}
 
     }
 
