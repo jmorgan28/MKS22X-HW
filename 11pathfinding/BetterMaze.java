@@ -3,12 +3,12 @@ import java.io.*;
 
 public class BetterMaze{
     private class Node{
-	int x,y;
+	int row,col;
 	Node previous;
 
-	public Node(int xx, int yy, Node prev){
-	    x = xx;
-	    y = yy;
+	public Node(int r, int c, Node prev){
+	    row = r;
+	    col = c;
 	    previous = prev;
 	}
 
@@ -16,11 +16,11 @@ public class BetterMaze{
 	    return previous;
 	}
 
-	public int getX(){
-	    return x;
+	public int getRow(){
+	    return row;
 	}
-	public int getY(){
-	    return y;
+	public int getCol(){
+	    return col;
 	}
 
     }
@@ -61,10 +61,24 @@ public class BetterMaze{
     }    
 
    /**Search for the end of the maze using the frontier. 
-      Keep going until you find a solution or run out of elements on the frontier.
+      Keep going until you find a solution or run out of elements on the frontier.  DO ANIMATE
     **/
-    private boolean solve(){  
-        /** IMPLEMENT THIS **/  
+    private boolean solve(){
+	placesToGo.add(new Node(startRow,startCol, null));
+	maze[startRow][startCol] = '.';
+	while(placesToGo.hasNext()){
+	    Node n = placesToGo.next();
+	    if(maze[n.getRow() + 1][n.getCol()] == (' ')){
+		placesToGo.add(new Node(n.getRow() + 1, n.getCol(), n));
+		maze[n.getRow() + 1][n.getCol()] = '.';
+	    }
+	    if(maze[n.getRow()][n.getCol() + 1] == (' ')){
+		placesToGo.add(new Node(n.getRow(), n.getCol() + 1, n));
+		maze[n.getRow()][n.getCol() + 1] = '.';
+	    }
+
+	}
+		
 	return false;
     }    
      
