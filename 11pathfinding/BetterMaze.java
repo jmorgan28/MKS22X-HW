@@ -41,8 +41,22 @@ public class BetterMaze{
      *Postcondition:  the correct solution is in the returned array
     **/
     public int[] solutionCoordinates(){
-        /** IMPLEMENT THIS **/      
-	return new int[1];
+        Node w = store;
+	Node k = store;
+	int i = 1;
+	while(w.getPrev() != null){
+	    w = w.getPrev();
+	    i ++;
+	}
+	int[] sol = new int[i * 2];
+	int n = sol.length -1;
+	while(n > 0){
+	    sol[n] = k.getCol();
+	    sol[n - 1] = k.getRow();
+	    n -= 2;
+	    k = k.getPrev();
+	}
+	return sol;
     }    
 
 
@@ -223,6 +237,14 @@ public class BetterMaze{
 	BetterMaze m = new BetterMaze("data2.dat");
 	m.setAnimate(true);
 	System.out.println(m.solveBFS());
+	int[] solution = m.solutionCoordinates();
+	String s = "[ ";
+	for(int i = 0; i < solution.length; i++){
+	    s += solution[i];
+	    s += ", ";
+	}
+        System.out.println(s + "]");
+	    
     }
 
 
