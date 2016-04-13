@@ -106,7 +106,10 @@ public class BetterMaze{
 		store = new Node(n.getRow(), n.getCol() - 1, n);
 		maze[n.getRow()][n.getCol() - 1] = '.';
 		return true; 
-	    }	    
+	    }
+	    if(animate){
+		toString();
+	    }
 
 
 	}
@@ -212,7 +215,13 @@ public class BetterMaze{
 	    return ans + color(37,40) + "\n";
 	}
     } 
-    
+
+
+    public static void main(String[]args){
+	BetterMaze m = new BetterMaze("data1.dat");
+	m.setAnimate(true);
+	System.out.println(m.solveBFS());
+    }
 
 
        
