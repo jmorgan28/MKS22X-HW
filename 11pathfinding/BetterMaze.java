@@ -65,9 +65,6 @@ public class BetterMaze{
       Keep going until you find a solution or run out of elements on the frontier.  DO ANIMATE
     **/
     private boolean solve(){
-	if(animate){
-	    System.out.println(this);
-	    } 
 	placesToGo.add(new Node(startRow,startCol, null));
 	maze[startRow][startCol] = '.';
 	while(placesToGo.hasNext()){
@@ -110,6 +107,11 @@ public class BetterMaze{
 		maze[n.getRow()][n.getCol() - 1] = '.';
 		return true; 
 	    }
+
+	    	if(animate){
+	    System.out.println(this);
+	    wait(40);
+	    } 
 
 
 	}
@@ -218,9 +220,9 @@ public class BetterMaze{
 
 
     public static void main(String[]args){
-	BetterMaze m = new BetterMaze("data1.dat");
+	BetterMaze m = new BetterMaze("data2.dat");
 	m.setAnimate(true);
-	m.solveBFS();
+	System.out.println(m.solveBFS());
     }
 
 
