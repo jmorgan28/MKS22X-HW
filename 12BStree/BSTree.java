@@ -56,15 +56,42 @@ public class BSTree<T extends Comparable<T>>{
     }
 
     public void add(T value){
-	//check for empty before you do things with root.
+	if(root == null){
+	    root = new Node();
+	    root.setData(value);
+	}
+        else{root.add(value);}
     }
+	       
+    //check for empty before you do things with root.
+        
     public String toString(){
+	if(root == null){
+	return "null";
+	}
+	else{
+	    return root.toString();
+	}
 	//check for empty before you do things with root.
-	return "";
+	
     }
+
+
     public boolean contains(T value){
+	if(root == null){
+	    return false;
+	}
+	else{
+	    return root.contains(value);
+	}
 	//check for empty before you do things with root.
-	return false;
+    }
+
+
+
+    public static void main(String[]args){
+	BSTree<Integer> t = new BSTree<Integer>();
+	t.add(5);
     }
 }
 
