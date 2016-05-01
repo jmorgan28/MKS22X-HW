@@ -3,6 +3,7 @@ public class BSTree<T extends Comparable<T>>{
 	T data;
 	Node left;
 	Node right;
+	String s;
 	// set/get: data/left/right
 
 	public void setData(T value){
@@ -39,7 +40,7 @@ public class BSTree<T extends Comparable<T>>{
 	    add(value, temp); 
 		
 	}
-	public void add(T value, Node temp){
+	private void add(T value, Node temp){
 	    if(value.compareTo(temp.getData()) > 0){
 		if(!(temp.getRight() == null)){
 		    add(value, temp.getRight());
@@ -65,14 +66,31 @@ public class BSTree<T extends Comparable<T>>{
 	}
 	
 	public String toString(){
-	    String s = "" + data;
+	    s = "";
 	    Node temp = this;
-	    while(temp.getLeft() != null){
-		temp = temp.getLeft();
-		s += " " + temp.getData();
+	    return toString(temp); 
+	}
+
+	private String toString(Node temp){
+	    if(temp == null){
+		return s += "_ ";
+	    }
+	    else{
+	    s += temp.getData() + " ";
+	    toString(temp.getLeft());
+	    toString(temp.getRight());
+	    
 	    }
 	    return s;
+	    
+	    // while(temp.getRight() != null){
+	    //	temp = temp.getRight();
+	    //	s += " " + temp.getData();
 	}
+	    
+
+	
+	
 	public boolean contains(T value){
 	    return value == data;
 	}
@@ -128,9 +146,12 @@ public class BSTree<T extends Comparable<T>>{
     public static void main(String[]args){
 	BSTree<Integer> t = new BSTree<Integer>();
 	t.add(5);
-	t.add(2);
+	t.add(11);
+	t.add(7);
+	t.add(6);
 	t.add(3);
-	t.add(-12);
+	t.add(-2);
+	t.add(4);
 	
 	//t.add(4);
 	//t.add(-12);

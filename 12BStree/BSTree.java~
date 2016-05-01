@@ -35,10 +35,43 @@ public class BSTree<T extends Comparable<T>>{
 	    return 0;
 	}
 	public void add(T value){
-	    data = value;
+	    Node temp = this;
+	    add(value, temp); 
+		
 	}
+	public void add(T value, Node temp){
+	    if(value.compareTo(temp.getData()) > 0){
+		if(!(temp.getRight() == null)){
+		    add(value, temp.getRight());
+		}
+		else{    //Node rem = temp.getRight();
+		Node n = new Node();
+		n.setData(value);
+		temp.setRight(n);}
+		    //n.setRight(rem);
+	    }
+	    if(value.compareTo(temp.getData()) < 0){
+		if(!(temp.getLeft() == null)){
+		    add(value, temp.getLeft());
+		}
+		else{
+		//Node rem = temp.getLeft();
+		Node n = new Node();
+		n.setData(value);
+		temp.setLeft(n);}
+		//n.setLeft(rem);
+	    }
+		
+	}
+	
 	public String toString(){
-	    return "" + data;
+	    String s = "" + data;
+	    Node temp = this;
+	    while(temp.getRight() != null){
+		temp = temp.getRight();
+		s += " " + temp.getData();
+	    }
+	    return s;
 	}
 	public boolean contains(T value){
 	    return value == data;
@@ -50,21 +83,59 @@ public class BSTree<T extends Comparable<T>>{
 
     //OUTER methods here are wrapper methods for the root
     public int getHeight(){
+	if(root == null){
 	//call the root's methods
 	//check for empty first!
-	return root.height();
+	    return 0;
+	}
+	else{return root.height();}
     }
 
     public void add(T value){
-	//check for empty before you do things with root.
+	if(root == null){
+	    root = new Node();
+	    root.setData(value);
+	}
+        else{root.add(value);}
     }
+	       
+    //check for empty before you do things with root.
+        
     public String toString(){
+	if(root == null){
+	return "null";
+	}
+	else{
+	    return root.toString();
+	}
 	//check for empty before you do things with root.
-	return "";
+	
     }
+
+
     public boolean contains(T value){
+	if(root == null){
+	    return false;
+	}
+	else{
+	    return root.contains(value);
+	}
 	//check for empty before you do things with root.
-	return false;
+    }
+
+
+
+    public static void main(String[]args){
+	BSTree<Integer> t = new BSTree<Integer>();
+	t.add(5);
+	t.add(11);
+	t.add(7);
+	t.add(6);
+	
+	//t.add(4);
+	//t.add(-12);
+	//t.add(9);
+	System.out.println(t);
     }
 }
 
