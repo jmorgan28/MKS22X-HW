@@ -44,20 +44,21 @@ public class BSTree<T extends Comparable<T>>{
 		if(!(temp.getRight() == null)){
 		    add(value, temp.getRight());
 		}
-		    //Node rem = temp.getRight();
+		else{    //Node rem = temp.getRight();
 		Node n = new Node();
 		n.setData(value);
-		temp.setRight(n);
+		temp.setRight(n);}
 		    //n.setRight(rem);
 	    }
 	    if(value.compareTo(temp.getData()) < 0){
 		if(!(temp.getLeft() == null)){
 		    add(value, temp.getLeft());
 		}
+		else{
 		//Node rem = temp.getLeft();
 		Node n = new Node();
 		n.setData(value);
-		temp.setLeft(n);
+		temp.setLeft(n);}
 		//n.setLeft(rem);
 	    }
 		
@@ -127,8 +128,9 @@ public class BSTree<T extends Comparable<T>>{
     public static void main(String[]args){
 	BSTree<Integer> t = new BSTree<Integer>();
 	t.add(5);
-	t.add(-12);
 	t.add(2);
+	t.add(3);
+	t.add(-12);
 	
 	//t.add(4);
 	//t.add(-12);
