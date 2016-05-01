@@ -41,24 +41,24 @@ public class BSTree<T extends Comparable<T>>{
 	}
 	public void add(T value, Node temp){
 	    if(value.compareTo(temp.getData()) > 0){
-		while(!(temp.getRight() == null || (temp.getRight().getData()).compareTo(value) > 0)){
+		if(!(temp.getRight() == null)){
 		    add(value, temp.getRight());
 		}
-		Node rem = temp.getRight();
+		    //Node rem = temp.getRight();
 		Node n = new Node();
 		n.setData(value);
 		temp.setRight(n);
-		n.setRight(rem);
+		    //n.setRight(rem);
 	    }
 	    if(value.compareTo(temp.getData()) < 0){
-		while(!(temp.getLeft() == null || (temp.getLeft().getData()).compareTo(value) < 0)){
+		if(!(temp.getLeft() == null)){
 		    add(value, temp.getLeft());
 		}
-		Node rem = temp.getLeft();
+		//Node rem = temp.getLeft();
 		Node n = new Node();
 		n.setData(value);
 		temp.setLeft(n);
-		n.setLeft(rem);
+		//n.setLeft(rem);
 	    }
 		
 	}
