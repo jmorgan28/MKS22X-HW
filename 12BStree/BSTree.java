@@ -92,9 +92,31 @@ public class BSTree<T extends Comparable<T>>{
 	
 	
 	public boolean contains(T value){
-	    return value == data;
+	    Node temp = this;
+	    return contains(value, temp);
 	}
-    
+
+	private boolean contains(T value, Node temp){
+	    if(value.compareTo(temp.getData()) == 0){
+		return true;
+	    }
+	    else{
+	    if(value.compareTo(temp.getData()) > 0){
+		if(!(temp.getRight() == null)){
+		    return contains(value, temp.getRight());
+		}
+		//return false;
+	    }
+	    if(value.compareTo(temp.getData()) < 0){
+		if(!(temp.getLeft() == null)){
+		    return contains(value, temp.getLeft());
+		}
+		//return false;
+	    }
+	    }
+	    return false;
+	}
+
     }
 
     private Node root;
@@ -156,7 +178,7 @@ public class BSTree<T extends Comparable<T>>{
 	//t.add(4);
 	//t.add(-12);
 	//t.add(9);
-	System.out.println(t);
+	System.out.println(t.contains(234434));
     }
 }
 
