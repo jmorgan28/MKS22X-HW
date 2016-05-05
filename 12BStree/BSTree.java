@@ -33,8 +33,20 @@ public class BSTree<T extends Comparable<T>>{
 
 	//real methods here
 	public int height(){ 
-	    return 0;
+	    return height(this);
 	}
+
+	public int height(Node temp){
+	    if(temp == null){
+		return -1;
+	    }
+	    int lh = height(temp.getLeft());
+	    //System.out.println(lh);
+	    int lr = height(temp.getRight());
+	    //System.out.println(lr);
+	    return  1 + Math.max(lh,lr);
+	}
+
 	public void add(T value){
 	    Node temp = this;
 	    add(value, temp); 
@@ -178,17 +190,27 @@ public class BSTree<T extends Comparable<T>>{
     private Node root;
 
     //OUTER methods here are wrapper methods for the root
+
+    public BSTree(){
+	root = new Node();
+    }
+
+    public BSTree(T value){
+	root = new Node();
+	root.setData(value);
+    }
+    
     public int getHeight(){
-	if(root == null){
+	if(root.getData() == null){
 	//call the root's methods
 	//check for empty first!
-	    return 0;
+	    return -1;
 	}
 	else{return root.height();}
     }
 
     public void add(T value){
-	if(root == null){
+	if(root.getData() ==  null){
 	    root = new Node();
 	    root.setData(value);
 	}
@@ -222,8 +244,11 @@ public class BSTree<T extends Comparable<T>>{
 
 
     public static void main(String[]args){
-	BSTree<Integer> t = new BSTree<Integer>();
-	t.add(5);
+	
+	BSTree<Integer> t = new BSTree<Integer>(5);
+	System.out.println(t.getHeight());
+	
+	System.out.println(t.getHeight());
 	t.add(11);
 	t.add(7);
 	t.add(6);
@@ -232,9 +257,10 @@ public class BSTree<T extends Comparable<T>>{
 	t.add(4);
 	
 	//t.add(4);
-	//t.add(-12);
-	//t.add(9);
-	System.out.println(t.contains(234434));
+	t.add(-12);
+	t.add(9);
+	System.out.println(t);
+	System.out.println(t.getHeight());
     }
 }
 

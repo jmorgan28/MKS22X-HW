@@ -117,6 +117,62 @@ public class BSTree<T extends Comparable<T>>{
 	    return false;
 	}
 
+	// make public T
+	public void remove(T value){
+	    remove(value,this,this);
+	}
+
+
+	// make public T      		   
+	public void remove(T value, Node temp, Node prev){
+	    if(value.compareTo(temp.getData()) == 0){
+		if(temp.getRight() == null && temp.getLeft() == null){
+		    temp = null;
+		}
+		if(temp.getRight() == null){
+		    // make prev work
+		    if((temp.getLeft().getData()).compareTo(prev.getData()) < 0){
+			prev.setLeft(temp.getRight());
+		    }
+		    else{
+			prev.setLeft(null);
+			prev.setRight(temp.getRight());
+		    }
+		    
+		}
+		if(temp.getLeft() == null){
+		    // make prev work
+		    if((temp.getRight().getData()).compareTo(prev.getData()) < 0){
+			prev.setLeft(temp.getRight());
+			prev.setRight(null);
+		    }
+		    else{
+			prev.setRight(temp.getRight());
+		    }
+		    
+		}
+		else{
+		    //find smallest or largest and do stuff
+		}
+		
+	    }
+	    else{
+	    if(value.compareTo(temp.getData()) > 0){
+		if(!(temp.getRight() == null)){
+		    remove(value, temp.getRight(), prev);
+		}
+		
+	    }
+	    if(value.compareTo(temp.getData()) < 0){
+		if(!(temp.getLeft() == null)){
+		    remove(value, temp.getLeft(), prev);
+		}
+		
+	    }
+	    }
+
+	}
+
     }
 
     private Node root;
