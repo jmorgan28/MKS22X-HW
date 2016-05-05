@@ -245,20 +245,21 @@ public class BSTree<T extends Comparable<T>>{
 
     public static void main(String[]args){
 	
-	BSTree<Integer> t = new BSTree<Integer>(5);
+	BSTree<Integer> t = new BSTree<Integer>(8);
 	System.out.println(t.getHeight());
-	
-	System.out.println(t.getHeight());
-	t.add(11);
-	t.add(7);
-	t.add(6);
+	t.add(323);
+	t.add(343);
+	t.add(322);
+	t.add(-355);
+	t.add(5);
+	t.add(58);
 	t.add(3);
-	t.add(-2);
-	t.add(4);
+	t.add(0);
+	
 	
 	//t.add(4);
-	t.add(-12);
-	t.add(9);
+	//t.add(-12);
+	//t.add(9);
 	System.out.println(t);
 	System.out.println(t.getHeight());
     }
