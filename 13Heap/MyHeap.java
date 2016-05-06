@@ -17,13 +17,41 @@ public class MyHeap<T extends Comparable<T>>
        size = array.length;
    }
 
-       /*private void pushDown(int k)
-       private void pushUp(int k)
-       private void heapify()
-       public T delete()
-       public void add(T x)
-       private void doubleSize()
-       */
+   private void swap(int i, int j){
+       T rem = data[j];
+       data[j] = data[i];
+       data[i] = rem;
+   }
+
+   //private void pushDown(int k)
+   private void pushUp(int k){
+       while(data[k /2].compareTo(data[k]) > 0){
+	   swap(k,k/ 2);
+       }
+   }
+   //  private void heapify()
+   //  public T delete()
+   private void grow(T[] array){
+       T[] ret = (T[]) new Comparable[array.length + 1];
+       for(int i = 0; i < array.length; i++){
+	   data[i] = array[i];
+       }
+       data =  ret;
+
+   }
+   
+   public void add(T x){
+	   grow(data);
+	   data[data.length-1] = x;
+	   if(data[data.length /2].compareTo(x) > 0){
+		   pushUp(data.length -1);
+	       }
+   }
+       
+
+       
+	   //  private void doubleSize()
+   //*/
        public String toString(){
 	   String s = "[";
 	   for(int i = 0; i < data.length - 1; i ++){
