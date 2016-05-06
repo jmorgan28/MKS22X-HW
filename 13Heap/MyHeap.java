@@ -43,7 +43,7 @@ public class MyHeap<T extends Comparable<T>>
    public void add(T x){
 	   grow(data);
 	   data[data.length-1] = x;
-	   if(data[data.length /2].compareTo(x) > 0){
+	   if(data[data.length - 1 /2].compareTo(x) > 0){
 		   pushUp(data.length -1);
 	       }
    }
@@ -70,8 +70,12 @@ public class MyHeap<T extends Comparable<T>>
        //public MyHeap(T[] array, boolean isMax)
 
        public static void main(String[]args){
-	   Integer [] temp = {3,4,6,2,7};
-	   MyHeap<Integer> h = new MyHeap<Integer>(temp);
+	   MyHeap<Integer> h = new MyHeap<Integer>();
+	   //h.add(4);
+	   //h.add(6);
+	   //h.add(677);
+	   //h.add(234);
+	   //h.add(1);
 	   System.out.println(h);
        }
 
