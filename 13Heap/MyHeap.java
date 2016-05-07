@@ -27,6 +27,7 @@ public class MyHeap<T extends Comparable<T>>
    private void pushUp(int k){
        while(data[k /2].compareTo(data[k]) > 0){
 	   swap(k,k/ 2);
+	   k = k/2;
        }
    }
    //  private void heapify()
@@ -34,18 +35,20 @@ public class MyHeap<T extends Comparable<T>>
    private void grow(T[] array){
        T[] ret = (T[]) new Comparable[array.length + 1];
        for(int i = 0; i < array.length; i++){
-	   data[i] = array[i];
+	   ret[i] = array[i];
        }
        data =  ret;
 
    }
    
    public void add(T x){
-	   grow(data);
-	   data[data.length-1] = x;
-	   if(data[data.length - 1 /2].compareTo(x) > 0){
-		   pushUp(data.length -1);
-	       }
+       grow(data);
+       //System.out.println(this);
+       data[data.length-1] = x;
+       if(data[(data.length - 1) /2].compareTo(x) > 0){
+       	   pushUp(data.length -1);
+             }
+	   
    }
        
 
@@ -71,11 +74,12 @@ public class MyHeap<T extends Comparable<T>>
 
        public static void main(String[]args){
 	   MyHeap<Integer> h = new MyHeap<Integer>();
-	   //h.add(4);
-	   //h.add(6);
-	   //h.add(677);
-	   //h.add(234);
-	   //h.add(1);
+	   h.add(4);
+	   System.out.println(h);
+	   h.add(6);
+	   h.add(677);
+	   h.add(234);
+	   h.add(1);
 	   System.out.println(h);
        }
 
