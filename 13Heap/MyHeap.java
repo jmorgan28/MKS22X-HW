@@ -39,11 +39,13 @@ public class MyHeap<T extends Comparable<T>>
 	    
 	    
 	    else{
-		if(data[k * 2] != null && (data[k * 2].compareTo(data[k]) < 0)){
+		
+		if(k *2 < data.length && data[k * 2] != null && (data[k * 2].compareTo(data[k]) < 0)){
 		swap(k *2,k);
 		k = k * 2;
 	    }
-		if(data[k * 2 +1] != null && (data[k * 2 +1].compareTo(data[k]) < 0)){
+		
+		if(k *2 + 1 < data.length && data[k * 2 +1] != null && (data[k * 2 +1].compareTo(data[k]) < 0)){
 		    swap(k * 2 + 1, k);
 		    k = k * 2 +1;
 		}
@@ -123,15 +125,15 @@ public class MyHeap<T extends Comparable<T>>
        //public MyHeap(T[] array, boolean isMax)
 
        public static void main(String[]args){
-	   //Integer [] use = {3,2,1,4,5,0,7,6,19,79,-54,15,145,90,91,-1,};
+	   Integer [] use = {3,2,1,4,5,0,7,6,19,79,-54,15,145,90,91,-1};
 	   //Integer [] use = {};
-	   MyHeap<Integer> h = new MyHeap<Integer>();
-	   for(int i = 0; i < 20; i ++){
-	     h.add((int)(Math.random() * 500));
+	   MyHeap<Integer> h = new MyHeap<Integer>(use);
+	   //for(int i = 0; i < 20; i ++){
+	   //h.add((int)(Math.random() * 500));
 	       //System.out.println(h);
-	       }
+	   //  }
 	   System.out.println(h);
-	   for(int i = 0; i < 20; i ++){
+	   for(int i = 0; i < use.length; i ++){
 	       h.delete();
 	       System.out.println(h);
 	     }
