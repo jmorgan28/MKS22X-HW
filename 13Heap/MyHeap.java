@@ -4,10 +4,12 @@ public class MyHeap<T extends Comparable<T>>
 {
    private int size;
    private T[] data;
+    private boolean max;
 
    public MyHeap(){
        data = (T[]) new Comparable[1];
        size = 0;
+       max = false;
    }
    public MyHeap(T[] array){
        data = (T[]) new Comparable[array.length + 1];
@@ -16,7 +18,37 @@ public class MyHeap<T extends Comparable<T>>
        }
        size = array.length;
        heapify();
+       max = false;
    }
+
+
+    public MyHeap(boolean isMax){
+	data = (T[]) new Comparable[1];
+	size = 0;
+	max = isMax;
+    }
+	
+	
+    public MyHeap(T[] array, boolean isMax){
+	data = (T[]) new Comparable[array.length + 1];
+       for(int i = 0; i < array.length; i++){
+	   data[i + 1] = array[i];
+       }
+       size = array.length;
+       heapify();
+       max = isMax;
+    }
+
+
+    public boolean compare(T c1, T c2){
+	if(max){
+	    return (c1.compareTo(c2)) < 0;
+	}
+	else{return c1.compareTo(c2) > 0;}
+    }
+	   
+  
+
 
    private void swap(int i, int j){
        T rem = data[j];
@@ -25,9 +57,9 @@ public class MyHeap<T extends Comparable<T>>
    }
 
     private void pushDown(int k){
-	while((k *2 < data.length && data[k * 2] != null &&  data[k * 2].compareTo(data[k]) < 0) || (k * 2 + 1 < data.length && data[k * 2 + 1] != null &&  data[k * 2 + 1].compareTo(data[k]) < 0)){
-	    if(data[k * 2] != null && (data[k * 2].compareTo(data[k]) < 0) && data[k * 2 +1] != null && (data[k * 2 +1].compareTo(data[k]) < 0)){
-		if(data[k*2].compareTo(data[k * 2 + 1]) < 0){
+	while((k *2 < data.length && data[k * 2] != null &&  compare(data[k],data[k*2])) || (k * 2 + 1 < data.length && data[k * 2 + 1] != null &&  compare(data[k],data[k*2 +1]))){
+	    if(data[k * 2] != null && compare(data[k],data[k*2]) && data[k * 2 +1] != null && compare(data[k],data[k*2 +1])){
+		if(compare(data[k*2 +1],data[k*2])){
 		    swap(k, k *2);
 		    k = k *2;
 		}
@@ -40,12 +72,12 @@ public class MyHeap<T extends Comparable<T>>
 	    
 	    else{
 		
-		if(k *2 < data.length && data[k * 2] != null && (data[k * 2].compareTo(data[k]) < 0)){
+		if(k *2 < data.length && data[k * 2] != null && compare(data[k],data[k*2])){
 		swap(k *2,k);
 		k = k * 2;
 	    }
 		
-		if(k *2 + 1 < data.length && data[k * 2 +1] != null && (data[k * 2 +1].compareTo(data[k]) < 0)){
+		if(k *2 + 1 < data.length && data[k * 2 +1] != null && compare(data[k],data[k*2 +1])){
 		    swap(k * 2 + 1, k);
 		    k = k * 2 +1;
 		}
@@ -56,7 +88,7 @@ public class MyHeap<T extends Comparable<T>>
 		
        
    private void pushUp(int k){
-       while(k/2 >0 && data[k /2].compareTo(data[k]) > 0){
+       while(k/2 >0 && compare(data[k/2],data[k])){
 	   swap(k,k/ 2);
 	   k = k/2;
        }
@@ -88,7 +120,7 @@ public class MyHeap<T extends Comparable<T>>
        //System.out.println(this);
        data[size + 1] = x;
        if((size + 1)/ 2 > 0){ 
-       if(data[(size + 1) /2].compareTo(x) > 0){
+	   if(compare(data[(size +1) /2],x)){
        	   pushUp(size + 1);
              }
        }
@@ -121,17 +153,15 @@ public class MyHeap<T extends Comparable<T>>
        
 
    //do this last
-   // public MyHeap(boolean isMax){
-       //public MyHeap(T[] array, boolean isMax)
-
        public static void main(String[]args){
 	   Integer [] use = {3,2,1,4,5,0,7,6,19,79,-54,15,145,90,91,-1};
 	   //Integer [] use = {};
-	   MyHeap<Integer> h = new MyHeap<Integer>(use);
-	   //for(int i = 0; i < 20; i ++){
-	   //h.add((int)(Math.random() * 500));
-	       //System.out.println(h);
-	   //  }
+	   //MyHeap<Integer> h = new MyHeap<Integer>(use);
+	   MyHeap<Integer> h = new MyHeap<Integer>();
+	   for(int i = 0; i < 20; i ++){
+	   h.add((int)(Math.random() * 500));
+	   //System.out.println(h);
+	     }
 	   System.out.println(h);
 	   for(int i = 0; i < use.length; i ++){
 	       h.delete();
