@@ -6,7 +6,7 @@ public class MyHeap<T extends Comparable<T>>
    private T[] data;
 
    public MyHeap(){
-       data = (T[]) new Comparable[0];
+       data = (T[]) new Comparable[1];
        size = 0;
    }
    public MyHeap(T[] array){
@@ -25,7 +25,7 @@ public class MyHeap<T extends Comparable<T>>
 
    //private void pushDown(int k)
    private void pushUp(int k){
-       while(data[k /2].compareTo(data[k]) > 0){
+       while(k/2 >0 && data[k /2].compareTo(data[k]) > 0){
 	   swap(k,k/ 2);
 	   k = k/2;
        }
@@ -33,27 +33,34 @@ public class MyHeap<T extends Comparable<T>>
    //  private void heapify()
    //  public T delete()
    private void grow(T[] array){
-       T[] ret = (T[]) new Comparable[array.length + 1];
-       for(int i = 0; i < array.length; i++){
-	   ret[i] = array[i];
-       }
-       data =  ret;
+       
 
    }
    
    public void add(T x){
+       if(size == data.length - 1){
        grow(data);
+       }
        //System.out.println(this);
-       data[data.length-1] = x;
-       if(data[(data.length - 1) /2].compareTo(x) > 0){
-       	   pushUp(data.length -1);
+       data[size + 1] = x;
+       if((size + 1)/ 2 > 0){ 
+       if(data[(size + 1) /2].compareTo(x) > 0){
+       	   pushUp(size + 1);
              }
+       }
+       size ++;
 	   
    }
        
 
        
-	   //  private void doubleSize()
+    private void doubleSize(){
+	T[] ret = (T[]) new Comparable[data.length * 2];
+       for(int i = 0; i < data.length; i++){
+	   ret[i] = data[i];
+       }
+       data =  ret;
+    }
    //*/
        public String toString(){
 	   String s = "[";
@@ -74,12 +81,9 @@ public class MyHeap<T extends Comparable<T>>
 
        public static void main(String[]args){
 	   MyHeap<Integer> h = new MyHeap<Integer>();
-	   h.add(4);
-	   System.out.println(h);
-	   h.add(6);
-	   h.add(677);
-	   h.add(234);
-	   h.add(1);
+	   for(int i = 0; i < 20; i ++){
+	       h.add((int)(Math.random() * 1000000));
+	   }
 	   System.out.println(h);
        }
 
