@@ -10,11 +10,12 @@ public class MyHeap<T extends Comparable<T>>
        size = 0;
    }
    public MyHeap(T[] array){
-       data = (T[]) new Comparable[array.length];
+       data = (T[]) new Comparable[array.length + 1];
        for(int i = 0; i < array.length; i++){
-	   data[i] = array[i];
+	   data[i + 1] = array[i];
        }
        size = array.length;
+       heapify();
    }
 
    private void swap(int i, int j){
@@ -23,23 +24,27 @@ public class MyHeap<T extends Comparable<T>>
        data[i] = rem;
    }
 
-   //private void pushDown(int k)
+    private void pushDown(int k){
+	//while(k * 2
+    }    
    private void pushUp(int k){
        while(k/2 >0 && data[k /2].compareTo(data[k]) > 0){
 	   swap(k,k/ 2);
 	   k = k/2;
        }
    }
-   //  private void heapify()
+    private void heapify(){
+	for(int i = 1; i <= size; i ++){
+	    pushUp(i);
+	}
+    }
    //  public T delete()
-   private void grow(T[] array){
-       
-
-   }
+   
    
    public void add(T x){
        if(size == data.length - 1){
-       grow(data);
+	   doubleSize();
+	   //System.out.println("dsfs");
        }
        //System.out.println(this);
        data[size + 1] = x;
@@ -60,15 +65,16 @@ public class MyHeap<T extends Comparable<T>>
 	   ret[i] = data[i];
        }
        data =  ret;
+       
     }
    //*/
        public String toString(){
 	   String s = "[";
-	   for(int i = 0; i < data.length - 1; i ++){
+	   for(int i = 1; i < size; i ++){
 	       s += data[i] + ", ";
 	   }
-	   if(data.length > 0){
-	   s += data[data.length -1];
+	   if(data.length > 1){
+	   s += data[size];
 	   }
 	   s += "]";
 	   return s;
@@ -76,14 +82,16 @@ public class MyHeap<T extends Comparable<T>>
        
 
    //do this last
-       //public MyHeap(boolean isMax)
+   // public MyHeap(boolean isMax){
        //public MyHeap(T[] array, boolean isMax)
 
        public static void main(String[]args){
-	   MyHeap<Integer> h = new MyHeap<Integer>();
-	   for(int i = 0; i < 20; i ++){
-	       h.add((int)(Math.random() * 1000000));
-	   }
+	   Integer [] use = {3,2,1,4,5,0,7,6,19,79,-54,15,145,90,91,-1,};
+	   MyHeap<Integer> h = new MyHeap<Integer>(use);
+	   /*for(int i = 0; i < 20; i ++){
+	     h.add((int)(Math.random() * 1000000));
+	       //System.out.println(h);
+	       }*/
 	   System.out.println(h);
        }
 
