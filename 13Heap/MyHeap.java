@@ -17,8 +17,9 @@ public class MyHeap<T extends Comparable<T>>
 	   data[i + 1] = array[i];
        }
        size = array.length;
-       heapify();
        max = false;
+       heapify();
+       
    }
 
 
@@ -35,8 +36,9 @@ public class MyHeap<T extends Comparable<T>>
 	   data[i + 1] = array[i];
        }
        size = array.length;
-       heapify();
        max = isMax;
+       heapify();
+       
     }
 
 
@@ -156,18 +158,18 @@ public class MyHeap<T extends Comparable<T>>
        public static void main(String[]args){
 	   Integer [] use = {3,2,1,4,5,0,7,6,19,79,-54,15,145,90,91,-1};
 	   //Integer [] use = {};
-	   //MyHeap<Integer> h = new MyHeap<Integer>(use);
-	   MyHeap<Integer> h = new MyHeap<Integer>();
-	   for(int i = 0; i < 20; i ++){
-	   h.add((int)(Math.random() * 500));
+	   MyHeap<Integer> h = new MyHeap<Integer>(use, true);
+	   //MyHeap<Integer> h = new MyHeap<Integer>(true);
+	   /*for(int i = 0; i < 10000000; i ++){
+	   h.add((int)(Math.random() * 5000000));
 	   //System.out.println(h);
-	     }
-	   System.out.println(h);
+	   }*/
+	   //System.out.println(h);
 	   for(int i = 0; i < use.length; i ++){
 	       h.delete();
 	       System.out.println(h);
-	     }
-	   // System.out.println(h);
+	       }
+	   //System.out.println(h);
        }
 
 }
