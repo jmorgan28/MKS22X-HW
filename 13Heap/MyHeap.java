@@ -26,17 +26,30 @@ public class MyHeap<T extends Comparable<T>>
 
     private void pushDown(int k){
 	while((k *2 < data.length && data[k * 2] != null &&  data[k * 2].compareTo(data[k]) < 0) || (k * 2 + 1 < data.length && data[k * 2 + 1] != null &&  data[k * 2 + 1].compareTo(data[k]) < 0)){
-	    if(data[k * 2] != null && (data[k * 2].compareTo(data[k]) < 0)){
+	    if(data[k * 2] != null && (data[k * 2].compareTo(data[k]) < 0) && data[k * 2 +1] != null && (data[k * 2 +1].compareTo(data[k]) < 0)){
+		if(data[k*2].compareTo(data[k * 2 + 1]) < 0){
+		    swap(k, k *2);
+		    k = k *2;
+		}
+		else{
+		    swap(k, k *2 +1);
+		    k = k * 2 +1;
+		}
+	}
+	    
+	    
+	    else{
+		if(data[k * 2] != null && (data[k * 2].compareTo(data[k]) < 0)){
 		swap(k *2,k);
 		k = k * 2;
 	    }
-	    else{
 		if(data[k * 2 +1] != null && (data[k * 2 +1].compareTo(data[k]) < 0)){
 		    swap(k * 2 + 1, k);
 		    k = k * 2 +1;
 		}
 	    }
 	}
+	
     }
 		
        
@@ -58,7 +71,8 @@ public class MyHeap<T extends Comparable<T>>
 	data[size] = null;
 	pushDown(1);
 	size --;
-	System.out.println(size);
+	//System.out.println(size);
+	//heapify();
 	return ret;
     }
 	
@@ -96,7 +110,7 @@ public class MyHeap<T extends Comparable<T>>
 	   for(int i = 1; i < size; i ++){
 	       s += data[i] + ", ";
 	   }
-	   if(data.length > 1){
+	   if(size > 0){
 	   s += data[size];
 	   }
 	   s += "]";
@@ -113,15 +127,15 @@ public class MyHeap<T extends Comparable<T>>
 	   //Integer [] use = {};
 	   MyHeap<Integer> h = new MyHeap<Integer>();
 	   for(int i = 0; i < 20; i ++){
-	     h.add((int)(Math.random() * 1000000));
+	     h.add((int)(Math.random() * 500));
 	       //System.out.println(h);
 	       }
-	    System.out.println(h);
+	   System.out.println(h);
 	   for(int i = 0; i < 20; i ++){
 	       h.delete();
 	       System.out.println(h);
-	       }
-	   System.out.println(h);
+	     }
+	   // System.out.println(h);
        }
 
 }
