@@ -1,7 +1,7 @@
 import java.util.*;
 public class RunningMedian{
     private MyHeap<Integer> smallValue, bigValue;
-    private int median;
+    private double median;
     
     public RunningMedian(){
 	smallValue = new MyHeap<Integer>(false);
@@ -22,16 +22,16 @@ public class RunningMedian{
 	    }
 	}
 	else{
-	    median = (smallValue.peek() + bigValue.peek()) / 2;
+	    median = (smallValue.peek() + bigValue.peek()) / 2.0;
 	}
 	return median;
     }
 
     public void add(Integer x){
 	if(x < median){
-	    smallValue.add(x);
+	    bigValue.add(x);
 	}
-	else{bigValue.add(x);}
+	else{smallValue.add(x);}
 	while(Math.abs(bigValue.getSize() - smallValue.getSize()) > 1){
 	    if(bigValue.getSize() > smallValue.getSize()){
 		Integer f = bigValue.delete();
@@ -47,7 +47,21 @@ public class RunningMedian{
 
     public static void main(String[]args){
 	RunningMedian r = new RunningMedian();
-	r.getMedian();
+	//r.add(-5);
+	//r.add(5);
+	//r.add(2);
+	r.add(0); 
+	r.add(1);
+	r.add(2);
+	r.add(3);
+	r.add(4);
+	r.add(5);
+	r.add(6);
+	r.add(7);
+	r.add(8);
+	r.add(9);
+	r.add(10);
+	System.out.println(r.getMedian());
 
     }
 
